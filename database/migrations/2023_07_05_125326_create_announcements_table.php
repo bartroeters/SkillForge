@@ -15,10 +15,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id')->unsigned();
             $table->foreignId('course_id')->unsigned();
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users');
-            // $table->unsignedBigInteger('course_id');
-            // $table->foreign('course_id')->references('id')->on('courses');
             $table->string('title');
             $table->string('content');
             $table->timestamps();

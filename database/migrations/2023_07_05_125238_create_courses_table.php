@@ -15,7 +15,7 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('description');
             $table->string('thumbnail')->nullable()->comment('Path or URL to the course thumbnail image');
             $table->decimal('price', 7, 2);

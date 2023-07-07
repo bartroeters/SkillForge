@@ -4,29 +4,21 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\Course;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
- */
 class CourseFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Course::class;
+
+    public function definition()
     {
+        $thumbnailPath = include "./database/factories/helpers/thumbnail_downloader.php";
+
         return [
-            'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 3), true))),
-            'description' => implode("\n\n", fake()->paragraphs(rand(1, 2))),
-            'thumbnail' => fake()->imageUrl('storage/app/public/images', 640, 480, null, false)
+            'title' => ucfirst(Str::remove('.', $this->faker->unique()->words(rand(1, 3), true))),
+            'description' => implode("\n\n", $this->faker->paragraphs(rand(1, 2))),
+            'thumbnail' => $thumbnailPath,
+            'price' => $this->faker->numberBetween(70, 3000)
         ];
     }
 }
-
-//             $table->string('title');
-//             $table->string('description');
-//             $table->string('thumbnail')->nullable()->comment('Path or URL to the course thumbnail image');
-//             $table->decimal('price', 7, 2);
-//             $table->timestamps();

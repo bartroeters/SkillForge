@@ -17,7 +17,7 @@ class CreateLessonsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('description');
-            $table->text('video_content')->nullable()->comment('Path or URL to the video content');
+            $table->text('video_content')->nullable();
             $table->text('text_content')->nullable();
             $table->timestamps();
         });

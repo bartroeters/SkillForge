@@ -16,8 +16,13 @@ class ReviewFactory extends Factory
      */
     public function definition(): array
     {
+        include './database\factories\variables\review_factory_variables.php';
+
         return [
-            //
+            'userId' => $user->id,
+            'courseId' => $course->id,
+            'rating' => fake()->numberBetween(1, 5),
+            'comment' => fake()->paragraph(),
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Note;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,12 @@ class NoteFactory extends Factory
      */
     public function definition(): array
     {
+        include "./database/factories/variables/note_factory_variables.php";
+
         return [
-            //
+            'lessonId' => $lesson->id,
+            'userId' => $user->id,
+            'content' => fake()->sentences(rand(1, 3), true),
         ];
     }
 }

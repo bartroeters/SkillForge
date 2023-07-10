@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->unsigned();
+            $table->foreignId('user_id')->unsigned()->cascadeOnDelete();
             $table->foreignId('course_id')->unsigned();
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->timestamps();
         });
     }

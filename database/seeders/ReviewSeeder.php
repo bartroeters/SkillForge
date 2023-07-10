@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Course;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ReviewSeeder extends Seeder
@@ -12,6 +14,12 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $courses = Course::all();
+
+        foreach ($courses as $course) {
+            Review::factory(rand(1, 5))->create([
+                'course_id' => $course->id
+            ]);
+        }
     }
 }

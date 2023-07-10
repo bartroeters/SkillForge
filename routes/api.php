@@ -14,14 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::post('login', [AuthController::class, 'login']);
-// Route::post('send-email-reset-password', [AuthController::class, 'resetPasswordRequest']);
-// Route::post('reset-password', [AuthController::class, 'updatePassword']);
-// Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('send-email-reset-password', [AuthController::class, 'resetPasswordRequest']);
+Route::post('reset-password', [AuthController::class, 'updatePassword']);
+Route::post('register', [AuthController::class, 'register']);
 
-// Route::middleware(['auth'])->group(function () {
-//     Define routes here
-
-//     Route::get('logout', [AuthController::class, 'logout']);
-//     Route::get('me', [AuthController::class, 'me']);
-// });
+Route::middleware(['auth'])->group(function () {
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('me', [AuthController::class, 'me']);
+});

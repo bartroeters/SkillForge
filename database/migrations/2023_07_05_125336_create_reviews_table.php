@@ -17,8 +17,8 @@ class CreateReviewsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id')->unsigned();
             $table->foreignId('course_id')->unsigned();
-            $table->decimal('rating', 4, 2);
-            $table->string('comment');
+            $table->unsignedTinyInteger('rating');
+            $table->text('comment');
             $table->timestamps();
         });
     }

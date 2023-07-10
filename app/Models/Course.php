@@ -20,7 +20,7 @@ class Course extends BaseModel
 
     public function students()
     {
-        return $this->belongsToMany(User::class, 'userId');
+        return $this->belongsToMany(User::class, 'course_user');
     }
 
     public function reviews()

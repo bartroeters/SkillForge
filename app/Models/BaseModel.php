@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class BaseModel extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
     /**
      * Get an attribute from the model.

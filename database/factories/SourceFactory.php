@@ -17,7 +17,8 @@ class SourceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->sentence(),
+            'url' => fake()->url()
         ];
     }
 }

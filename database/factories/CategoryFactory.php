@@ -17,8 +17,11 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $imageFiles = glob('public/storage/images/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+
         return [
-            'name' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 2), true)))
+            'name' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 2), true))),
+            'thumbnail' => 'public/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
         ];
     }
 }

@@ -2,9 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Course;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -20,15 +17,15 @@ class AnnouncementFactory extends Factory
      */
     public function definition(): array
     {
-        include "./database\factories\variables\announcement_factory_variables.php";
+        include "./database/factories/variables/announcement_factory_variables.php";
 
         return [
-            'user' => $user->id,
-            'course' => Course::inRandomOrder()->first()->id,
+            'userId' => $user->id,
+            'courseId' => $course->id,
             'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 5), true))),
             'content' => fake()->sentences(rand(2, 8), true),
-            'created_at' => $timestamp,
-            'updated_at' => $timestamp
+            'createdAt' => $timestamp,
+            'updatedAt' => $timestamp
         ];
     }
 }

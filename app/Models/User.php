@@ -20,11 +20,11 @@ class User extends BaseModel implements AuthenticatableContract, AuthCanResetPas
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'firstName',
+        'lastName',
         'email',
         'password',
-        'is_admin'
+        'isAdmin'
     ];
 
     /**
@@ -44,7 +44,7 @@ class User extends BaseModel implements AuthenticatableContract, AuthCanResetPas
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'password' => 'hashed',
     ];
 
     /**
@@ -52,20 +52,20 @@ class User extends BaseModel implements AuthenticatableContract, AuthCanResetPas
      *
      * @return mixed
      */
-    // public function getJWTIdentifier()
-    // {
-    //     return $this->getKey();
-    // }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *
      * @return array
      */
-    // public function getJWTCustomClaims()
-    // {
-    //     return [];
-    // }
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
     /**
      * Return full name.
@@ -74,7 +74,7 @@ class User extends BaseModel implements AuthenticatableContract, AuthCanResetPas
      */
     public function getNameAttribute()
     {
-        return trim($this->firstName." ".$this->LastName);
+        return trim($this->firstName." ".$this->lastName);
     }
 
     public static function retrieveByEmail(string $email): ?User

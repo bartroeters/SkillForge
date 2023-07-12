@@ -8,9 +8,9 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as AuthCanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-// use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class User extends BaseModel implements AuthenticatableContract, AuthCanResetPassword
+class User extends BaseModel implements JWTSubject, AuthenticatableContract, AuthCanResetPassword
 {
     use Authenticatable, HasFactory, Notifiable, CanResetPassword;
 
@@ -43,8 +43,7 @@ class User extends BaseModel implements AuthenticatableContract, AuthCanResetPas
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        // 'password' => 'hashed',
+        'email_verified_at' => 'datetime'
     ];
 
     /**

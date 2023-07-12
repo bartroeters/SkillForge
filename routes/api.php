@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,7 @@ Route::post('reset-password', [AuthController::class, 'updatePassword']);
 Route::post('register', [AuthController::class, 'register']);
 
 Route::middleware(['auth'])->group(function () {
+    Route::resource('courses', CourseController::class);
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('me', [AuthController::class, 'me']);
 });

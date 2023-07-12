@@ -1,0 +1,26 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "es2022",
+        "outDir": "./built",
+        "allowJs": true,
+        "target": "es2022",
+        "allowUnreachableCode": false,
+        "noImplicitReturns": true,
+        "noImplicitAny": true,
+        "typeRoots": ["./typings"],
+        "lib": ["es2017", "DOM"],
+        "moduleResolution": "node",
+        "baseUrl": "./resources",
+        "paths": {
+            "@/*": [".js/*"],
+            "components/*": ["./js/components/*"],
+            "domains/*": ["./js/domains/*"],
+            "helpers/*": ["./js/helpers/*"],
+            "routes/*": ["./js/routes/*"],
+            "services/*": ["./js/services/*"]
+        }
+    },
+"include": ["./**/*"],
+"exclude": ["./plugins/**/*", "./typings/**/*", "./built/**/*", "node_modules"]
+}

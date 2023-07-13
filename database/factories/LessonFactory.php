@@ -19,9 +19,21 @@ class LessonFactory extends Factory
     {
         $imageFiles = glob('public/storage/images/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 
+        /**
+         * Generate thumbnail if there are no images in `storage/app/public/images`.
+         * Note: Make sure you have set the path to the CA bundle file in `php.ini` using `curl.cainfo = "C:/path/to/cacert.pem"`.
+         * Uncomment the following lines in LessonFactory.php, CategoryFactory.php, and CourseFactory.php:
+         * $thumbnailPath = include 'database/factories/helpers/thumbnail_downloader.php';
+         * 'thumbnail' => $thumbnailPath,
+         * 'videoContent' => $thumbnailPath,
+         */
+
+        // $thumbnailPath = include 'database/factories/helpers/thumbnail_downloader.php';
+
         return [
             'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 3), true))),
             'description' => implode("\n\n", fake()->paragraphs(rand(1, 2))),
+            // 'videoContent' => $thumbnailPath,
             'videoContent' => 'public/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
             'description' => implode("\n\n", fake()->paragraphs(rand(3, 7))),
         ];

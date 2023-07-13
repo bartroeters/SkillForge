@@ -20,9 +20,25 @@ export const storeModuleFactory = <T extends {id: number}>(moduleName: string) =
         /**
          * Set items in the state.
          */
-        setAll: (items: T[]) => {
-            for (const item of items) state.value[item.id] = Object.freeze(item);
-        },
+        // setAll: (items: T[]) => {
+        //     for (const item of items) state.value[item.id] = Object.freeze(item);
+        // },
+
+        setAll: (items: { data: T[] }) => {
+            const { data } = items;
+            if (!Array.isArray(data)) {
+              console.error('Items is not iterable:', data);
+              return;
+            }
+            for (const item of data) {
+              if (!item || typeof item.id !== 'number') {
+                console.error('Invalid item:', item);
+                continue;
+              }
+              state.value[item.id] = Object.freeze(item);
+            }
+          },
+
         /**
          * Set one specific item in the storage
          */

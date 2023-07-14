@@ -11,6 +11,5 @@ courseStore.actions.getAll();
 </script>
 
 <template>
-    <div>dsjhgfdhgfdyhgfd</div>
     <course-list :courses="courses"/>
 </template>

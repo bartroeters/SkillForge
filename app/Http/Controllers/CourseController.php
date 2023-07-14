@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
-use App\Http\Resources\CourseResource as ResourcesCourseResource;
+use App\Http\Resources\CourseResource;
 
 class CourseController extends Controller
 {
@@ -14,7 +14,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return ResourcesCourseResource::collection(Course::all());
+        return CourseResource::collection(Course::all());
     }
 
     /**

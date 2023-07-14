@@ -3,7 +3,7 @@ import { COURSE_DOMAIN_NAME } from 'domains/courses';
 import {User} from 'domains/users/types';
 import { computed, ref } from 'vue';
 import { getRequest, postRequest } from 'services/http';
-import { goToOverviewPage, goToRoute, registerBeforeRouteMiddleware } from 'services/router';
+import { getCurrentRouteName, goToOverviewPage, goToRoute, registerBeforeRouteMiddleware } from 'services/router';
 import Login from './pages/Login.vue';
 import Register from './pages/Register.vue';
 import RequestResetPassword from './pages/RequestResetPassword.vue';
@@ -12,7 +12,7 @@ import ResetPassword from './pages/ResetPassword.vue';
 export const authRoutes = [
     {
         path: '/',
-        name: 'Login',
+        name: 'login',
         component: Login,
         meta: {auth: false, canSeeWhenLoggedIn: false},
     },

@@ -36,7 +36,7 @@ class CourseFactory extends Factory
             'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 3), true))),
             'description' => implode("\n\n", fake()->paragraphs(rand(3, 7))),
             // 'thumbnail' => $thumbnailPath,
-            'thumbnail' => 'public/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
+            'thumbnail' => '/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
             'price' => fake()->numberBetween(70, 3000)
         ];
     }

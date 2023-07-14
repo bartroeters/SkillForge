@@ -33,7 +33,7 @@ class CategoryFactory extends Factory
         return [
             'name' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 2), true))),
             // 'thumbnail' => $thumbnailPath,
-            'thumbnail' => 'public/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
+            'thumbnail' => '/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
         ];
     }
 }

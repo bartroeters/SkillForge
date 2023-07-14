@@ -1,6 +1,6 @@
 {
     // Basic editor settings
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
     "editor.formatOnSave": true,
     // ESLint settings
     "eslint.run": "onType",

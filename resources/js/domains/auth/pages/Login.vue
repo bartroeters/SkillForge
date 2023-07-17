@@ -1,14 +1,14 @@
 <script setup>
-import {goToOverviewPage} from 'services/router';
+import {goToDashboardPage} from 'services/router';
 import {login} from '../';
 import {ref} from 'vue';
-import { COURSE_DOMAIN_NAME } from '../../courses';
+import { USER_DOMAIN_NAME } from '../../users';
 
 const credentials = ref({});
 
 const submit = async () => {
     await login(credentials.value);
-    goToOverviewPage(COURSE_DOMAIN_NAME);
+    goToDashboardPage(USER_DOMAIN_NAME);
 };
 </script>
 
@@ -36,7 +36,7 @@ const submit = async () => {
 
         <div>
             <input id="remember" type="checkbox" name="remember" />
-            <label for="remember">&nbsp;Ingelogd blijven</label>
+            <label for="remember">&nbsp;Keep me logged in</label>
         </div>
 
         <div>

@@ -8,7 +8,7 @@ export const USER_DOMAIN_NAME = 'users';
 export const userStore = storeModuleFactory<User>(USER_DOMAIN_NAME);
 
 export const userRoutes = [
-    createDashboardRoute(USER_DOMAIN_NAME, DashboardVue)
+    createDashboardRoute(USER_DOMAIN_NAME, DashboardVue, {auth: true, canSeeWhenLoggedIn: true})
 ];
 
 export const getUserFullName = (userId: number) => {

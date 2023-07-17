@@ -11,14 +11,14 @@
         "typeRoots": ["./typings"],
         "lib": ["es2017", "DOM"],
         "moduleResolution": "node",
-        "baseUrl": "./resources",
+        "baseUrl": "./resources/js",
         "paths": {
-            "@/*": [".js/*"],
-            "components/*": ["./js/components/*"],
-            "domains/*": ["./js/domains/*"],
-            "helpers/*": ["./js/helpers/*"],
-            "routes/*": ["./js/routes/*"],
-            "services/*": ["./js/services/*"]
+            "@/*": ["./*"],
+            "components/*": ["./components/*"],
+            "domains/*": ["./domains/*"],
+            "helpers/*": ["./helpers/*"],
+            "routes/*": ["./routes/*"],
+            "services/*": ["./services/*"]
         }
     },
 "include": ["./**/*"],

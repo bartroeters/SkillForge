@@ -67,4 +67,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## ???
 
-* Can you use storage\app\public with storage\certificates\cacert.pem efficiently?
+* Change the hover menu so the text is different if the web user is currently on the page the text it says to go to.

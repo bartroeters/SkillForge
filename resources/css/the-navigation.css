@@ -8,10 +8,14 @@
     margin-bottom: 12px;
     justify-content: space-between;
     align-items: center;
-    z-index: 999;
+    z-index: 998;
 }
 
 /* Styles for app title */
+.app-title-container {
+    position: relative;
+}
+
 .app-title {
     text-decoration: none;
     color: rgb(255, 255, 255);
@@ -22,9 +26,23 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.app-title:hover {
-    color: antiquewhite;
-    letter-spacing: .065em;
+/* Styles for app title hover menu */
+.hover-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+  
+.app-title-container:hover .hover-menu {
+    display: block;
 }
 
 /* Styles for navigation links */
@@ -41,7 +59,7 @@
 }
 
 .navigation-links a:hover {
-    color: #FFC56D;
+    color: rgba(255, 197, 109, 1);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
@@ -68,7 +86,7 @@
 }
 
 .dropdown-menu a:hover {
-    color: #FFC56D;
+    color: rgba(255, 197, 109, 1);
 }
 
 .dropdown-menu li {

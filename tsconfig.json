@@ -9,7 +9,7 @@
         "noImplicitReturns": true,
         "noImplicitAny": true,
         "typeRoots": ["./typings"],
-        "lib": ["es2017", "DOM"],
+        "lib": ["es2020", "DOM"],
         "moduleResolution": "node",
         "baseUrl": "./resources/js",
         "paths": {
@@ -19,7 +19,9 @@
             "helpers/*": ["./helpers/*"],
             "routes/*": ["./routes/*"],
             "services/*": ["./services/*"]
-        }
+        },
+        "jsx": "preserve",
+        "strict": true
     },
 "include": ["./**/*"],
 "exclude": ["./plugins/**/*", "./typings/**/*", "./built/**/*", "node_modules"]

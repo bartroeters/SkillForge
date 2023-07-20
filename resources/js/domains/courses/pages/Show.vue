@@ -2,5 +2,5 @@
 </script>
 
 <template>
-    <div>resources\js\domains\courses\pages\Show.vue</div>
+  <div>resources\js\domains\courses\pages\Show.vue</div>
 </template>

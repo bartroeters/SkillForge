@@ -18,7 +18,8 @@
             "domains/*": ["./domains/*"],
             "helpers/*": ["./helpers/*"],
             "routes/*": ["./routes/*"],
-            "services/*": ["./services/*"]
+            "services/*": ["./services/*"],
+            "types/*": ["./types/*"]
         },
         "jsx": "preserve",
         "strict": true

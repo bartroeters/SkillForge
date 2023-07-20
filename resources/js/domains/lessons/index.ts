@@ -8,5 +8,5 @@ export const LESSON_DOMAIN_NAME = 'lessons';
 export const lessonStore = storeModuleFactory<Lesson>(LESSON_DOMAIN_NAME);
 
 export const lessonRoutes = [
-    createShowRoute(LESSON_DOMAIN_NAME, ShowVue)
+  createShowRoute(LESSON_DOMAIN_NAME, ShowVue)
 ];

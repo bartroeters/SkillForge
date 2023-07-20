@@ -1,12 +1,12 @@
 export interface User {
-    id: number
-    firstName: string
-    lastName: string
-    email: string
-    isAdmin: boolean
+  id: number
+  firstName: string
+  lastName: string
+  email: string
+  isAdmin: boolean
 };
 
 export interface UserToRegister extends User {
-    password: string
-    repeatedPassword: string
+  password: string
+  repeatedPassword: string
 };

@@ -2,6 +2,7 @@
     // Basic editor settings
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
     // ESLint settings
     "eslint.run": "onType",
     "eslint.workingDirectories": ["./"],

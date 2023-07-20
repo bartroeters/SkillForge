@@ -3,7 +3,7 @@ import {registerAfterMiddleware} from '../router';
 import {registerRequestMiddleware, registerResponseErrorMiddleware} from '../http';
 
 type ErrorBag = {
-    [property: string]: string[];
+  [property: string]: string[];
 };
 
 const errorBag = ref<ErrorBag>({});
@@ -20,6 +20,6 @@ export const destroyErrors = () => (errorBag.value = {});
 registerAfterMiddleware(destroyErrors);
 registerRequestMiddleware(destroyErrors);
 registerResponseErrorMiddleware(({response}) => {
-    if (!response || !response.data?.errors) return;
+  if (!response || !response.data?.errors) return;
     setErrorBag(response.data.errors);
 });

@@ -10,36 +10,36 @@ export const DASHBOARD_PAGE_NAME ='.dashboard';
 const defaultMeta = {auth: true, canSeeWhenLoggedIn: true};
 
 export const createShowRoute = (module: string, component: RouteComponent, meta?: Meta) => ({
-    path: `/${module}/:id`,
-    name: module + SHOW_PAGE_NAME,
-    component,
-    meta: meta ? meta : defaultMeta,
+  path: `/${module}/:id`,
+  name: module + SHOW_PAGE_NAME,
+  component,
+  meta: meta ? meta : defaultMeta,
 });
 
 export const createCreateRoute = (module: string, component: RouteComponent, meta?: Meta) => ({
-    path: `/${module}/create`,
-    name: module + CREATE_PAGE_NAME,
-    component,
-    meta: meta ? meta : defaultMeta,
+  path: `/${module}/create`,
+  name: module + CREATE_PAGE_NAME,
+  component,
+  meta: meta ? meta : defaultMeta,
 });
 
 export const createOverviewRoute = (module: string, component: RouteComponent, meta?: Meta) => ({
-    path: `/${module}`,
-    name: module + OVERVIEW_PAGE_NAME,
-    component,
-    meta: meta ? meta : defaultMeta,
+  path: `/${module}`,
+  name: module + OVERVIEW_PAGE_NAME,
+  component,
+  meta: meta ? meta : defaultMeta,
 });
 
 export const createEditRoute = (module: string, component: RouteComponent, meta?: Meta) => ({
-    path: `/${module}/edit`,
-    name: module + EDIT_PAGE_NAME,
-    component,
-    meta: meta ? meta : defaultMeta,
+  path: `/${module}/edit`,
+  name: module + EDIT_PAGE_NAME,
+  component,
+  meta: meta ? meta : defaultMeta,
 });
 
 export const createDashboardRoute = (module: string, component: RouteComponent, meta?: Meta) => ({
-    path: `/${module}/dashboard`,
-    name: module + DASHBOARD_PAGE_NAME,
-    component,
-    meta: meta ? meta : defaultMeta,
+  path: `/${module}/dashboard`,
+  name: module + DASHBOARD_PAGE_NAME,
+  component,
+  meta: meta ? meta : defaultMeta,
 });

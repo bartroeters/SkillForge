@@ -1,4 +1,4 @@
 export type Meta = {
-    auth: boolean;
-    canSeeWhenLoggedIn: boolean;
+  auth: boolean;
+  canSeeWhenLoggedIn: boolean;
 };

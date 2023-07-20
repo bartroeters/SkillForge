@@ -10,10 +10,10 @@ const app = createApp(App);
 addRoutes(routes);
 
 try {
-    await checkIfLoggedIn();
+  await checkIfLoggedIn();
 } catch (_) {
-    // so we dont get stuck in an endless loop of refreshing and checking if logged in
+  // so we dont get stuck in an endless loop of refreshing and checking if logged in
 } finally {
-    useRouterInApp(app);
-    app.mount('#app');
+  useRouterInApp(app);
+  app.mount('#app');
 }

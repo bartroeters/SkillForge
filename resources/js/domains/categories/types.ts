@@ -1,5 +1,5 @@
 export default interface Category {
-    id: number
-    name: string
-    thumbnail: string
+  id: number
+  name: string
+  thumbnail: string
 };

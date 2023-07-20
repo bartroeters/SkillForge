@@ -1,64 +1,64 @@
 import {App} from 'vue';
 import {
-    CREATE_PAGE_NAME,
-    EDIT_PAGE_NAME,
-    OVERVIEW_PAGE_NAME,
-    SHOW_PAGE_NAME,
-    DASHBOARD_PAGE_NAME
+  CREATE_PAGE_NAME,
+  EDIT_PAGE_NAME,
+  OVERVIEW_PAGE_NAME,
+  SHOW_PAGE_NAME,
+  DASHBOARD_PAGE_NAME
 }
-    from './factory';
+  from './factory';
 import {
-    LocationQueryRaw,
-    NavigationGuard,
-    NavigationHookAfter,
-    RouteLocationRaw,
-    RouteRecordRaw,
-    createRouter,
-    createWebHistory,
+  LocationQueryRaw,
+  NavigationGuard,
+  NavigationHookAfter,
+  RouteLocationRaw,
+  RouteRecordRaw,
+  createRouter,
+  createWebHistory,
 }
-    from 'vue-router';
+  from 'vue-router';
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes: [],
+  history: createWebHistory(),
+  routes: [],
 });
 
 export const addRoutes = (routes: RouteRecordRaw[]) => {
-    for (const route of routes) router.addRoute(route);
+  for (const route of routes) router.addRoute(route);
 };
 
 export const useRouterInApp = (app: App<Element>) => app.use(router);
 
 const createRoute = (name: string, id?: number, query?: LocationQueryRaw) => {
-    const route: RouteLocationRaw = {name};
-    if (id) route.params = {id};
-    if (query) route.query = query;
-    return route;
+  const route: RouteLocationRaw = {name};
+  if (id) route.params = {id};
+  if (query) route.query = query;
+  return route;
 };
 
 export const goToRoute = (name: string, id?: number, query?: LocationQueryRaw) => {
-    if (onPage(name) && !query && !id) return;
-    router.push(createRoute(name, id, query));
+  if (onPage(name) && !query && !id) return;
+  router.push(createRoute(name, id, query));
 };
 
 const beforeRouteMiddleware: NavigationGuard[] = [
-    (to, from) => {
-        const fromQuery = from.query.from;
-        if (fromQuery && typeof fromQuery === 'string') {
-            if (fromQuery === to.fullPath) return false;
-            router.push(fromQuery);
-            return true;
-        }
-        return false;
-    },
+  (to, from) => {
+  const fromQuery = from.query.from;
+  if (fromQuery && typeof fromQuery === 'string') {
+    if (fromQuery === to.fullPath) return false;
+    router.push(fromQuery);
+    return true;
+  }
+  return false;
+  },
 ];
 
 router.beforeEach(async (to, from, next) => {
-    for (const middlewareFunc of beforeRouteMiddleware) {
-        // MiddlewareFunc will return true if it encountered problems
-        if (await middlewareFunc(to, from, next)) return next(false);
-    }
-    return next();
+  for (const middlewareFunc of beforeRouteMiddleware) {
+  // MiddlewareFunc will return true if it encountered problems
+  if (await middlewareFunc(to, from, next)) return next(false);
+  }
+  return next();
 });
 
 export const registerBeforeRouteMiddleware = (middleware: NavigationGuard) => beforeRouteMiddleware.push(middleware);

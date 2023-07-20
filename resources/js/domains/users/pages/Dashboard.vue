@@ -5,7 +5,7 @@ const user = getLoggedInUser
 </script>
 
 <template>
-    <div>resources\js\domains\users\pages\Dashboard.vue</div>
+  <div>resources\js\domains\users\pages\Dashboard.vue</div>
 
-    {{ user }}
+  {{ user }}
 </template>

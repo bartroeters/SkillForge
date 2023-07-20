@@ -9,12 +9,12 @@ export const CATEGORY_DOMAIN_NAME = 'categories';
 export const categoryStore = storeModuleFactory<Category>(CATEGORY_DOMAIN_NAME);
 
 export const categoryRoutes = [
-    createOverviewRoute(CATEGORY_DOMAIN_NAME, OverviewPage, {auth: false, canSeeWhenLoggedIn: true}),
-    createShowRoute(CATEGORY_DOMAIN_NAME, ShowVue)
+  createOverviewRoute(CATEGORY_DOMAIN_NAME, OverviewPage, {auth: false, canSeeWhenLoggedIn: true}),
+  createShowRoute(CATEGORY_DOMAIN_NAME, ShowVue)
 ];
 
 export const getSortedCategories = () => {
-    return categoryStore.getters.all.value.sort((categoryA, categoryZ) =>
-        categoryA.name.localeCompare(categoryZ.name)
-    );
+  return categoryStore.getters.all.value.sort(
+    (categoryA, categoryZ) => categoryA.name.localeCompare(categoryZ.name)
+  );
 };

@@ -11,9 +11,9 @@ function toggleDropdown() {
 
 function closeDropdownWithDelay() {
   timeoutId = window.setTimeout(() => {
-    if (!isMouseOverDropdown) {
-      isDropdownOpen.value = false;
-      timeoutId = null;
+  if (!isMouseOverDropdown) {
+    isDropdownOpen.value = false;
+    timeoutId = null;
     }
   }, 1800);
 }

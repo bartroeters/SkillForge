@@ -5,8 +5,9 @@ defineProps<{name: string}>();
 </script>
 
 <template>
-    <slot />
-    <div v-for="error in getErrorByProperty(name).value" :key="error" class="d-block invalid-feedback">
-        {{ error }}
-    </div>
+  <slot />
+  
+  <div v-for="error in getErrorByProperty(name).value" :key="error" class="d-block invalid-feedback">
+    {{ error }}
+  </div>
 </template>

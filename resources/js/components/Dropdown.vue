@@ -1,49 +1,67 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
-import { DropdownProps } from 'types/dropdown';
 
-const props = defineProps<{
-  isOpen: Boolean,
-  text: String,
-  dropdownClass: String,
-  toggleClass: String,
-  menuClass: String
+const { text, className, withDelay } = defineProps<{
+  text: string,
+  className: string,
+  withDelay?: boolean,
 }>();
 
-const isDropDownOpen = ref(false);
+const isDropdownOpen = ref(false);
+
 let timeoutId: number | null = null;
-let isMouseOverDropdown = false;
 
 function toggleDropdown() {
-  isDropDownOpen.value = !isDropDownOpen.value;
+  isDropdownOpen.value = !isDropdownOpen.value;
 }
 
 function closeDropdownWithDelay() {
   timeoutId = window.setTimeout(() => {
-    if (!isMouseOverDropdown) {
-      isDropDownOpen.value = false;
-      timeoutId = null;
-    }
+      isDropdownOpen.value = false;
   }, 1800);
 }
 
-watchEffect(() => {
-  if (!isDropDownOpen.value && timeoutId !== null) {
+function clearCloseDropdownTimeout() {
+  if (timeoutId !== null) {
     window.clearTimeout(timeoutId);
     timeoutId = null;
+  }
+}
+
+watchEffect(() => {
+  if (!isDropdownOpen.value && timeoutId !== null) {
+    window.clearTimeout(timeoutId);
   }
 });
 </script>
 
 <template>
-  <span :class="[dropdownClass, { open: isDropdownOpen }]" ref="dropdown">
-    <a :class="toggleClass" role="button" @click="toggleDropdown">
+  <span>
+    <a role="button" @click="toggleDropdown">
       {{ text }}
     </a>
 
-    <ul v-show="isDropDownOpen" :class="menuClass" @mouseleave="closeDropdownWithDelay">
+    <ul
+      v-show="isDropdownOpen"
+      :class="className"
+      @mouseleave="withDelay ? closeDropdownWithDelay : undefined"
+      @mouseenter="withDelay ? clearCloseDropdownTimeout : undefined"
+      >
       <slot />
     </ul>
   </span>
 </template>
 
+<style scoped>
+a {
+  cursor: pointer;
+}
+
+ul {
+  position: absolute;
+}
+
+ul a {
+  display: block;
+}
+</style>

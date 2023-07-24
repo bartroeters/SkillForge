@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { isLoggedIn, logout } from 'domains/auth';
-import BrowseCoursesDropdown from './BrowseCoursesDropdown.vue';
 import { goToOverviewPage } from 'services/router';
 import { COURSE_DOMAIN_NAME } from 'domains/courses';
 import Dropdown from './Dropdown.vue';
@@ -17,21 +16,10 @@ function redirectUponLogout() {
 
     <div class="navigation-links">
       <span v-if="isLoggedIn">
-        <dropdown
-          :is-open="Dropdown.isDropdownOpen"
-          :text="'Browse Courses'"
-          dropdown-class="dropdown"
-          toggle-class="dropdown-toggle"
-          menu-class="dropdown-menu"
-          >
+        <dropdown :text="'Browse Courses'" class-name="dropdown-menu" :withDelay="true">
           <router-link :to="{ name: 'courses.overview' }">All Courses</router-link>
           <router-link :to="{ name: 'categories.overview' }">Disciplines</router-link>
         </dropdown>
-
-        <!-- <browse-courses-dropdown>
-          <router-link :to="{ name: 'courses.overview' }">All Courses</router-link>
-          <router-link :to="{ name: 'categories.overview' }">Disciplines</router-link>
-        </browse-courses-dropdown> -->
 
         <a @click="logout(); redirectUponLogout()">Logout</a>
       </span>

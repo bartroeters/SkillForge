@@ -1,16 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { HoverMenuProps, isHoverMenuVisible } from 'types/hover-menu';
-
-const props = defineProps<{
-  isVisible: Boolean,
-  text: String,
-  className: String
-}>();
+  const props = defineProps<{
+    text: String,
+    className: String
+  }>();
 </script>
 
 <template>
-  <div :class="className" ref="hoverMenu">
+  <div :class="className">
     {{ text }}
   </div>
 </template>
+
+<style scoped>
+  div {
+    display: none;
+    position: absolute;
+    z-index: 999;
+  }
+</style>

@@ -28,17 +28,12 @@
 
 /* Styles for app title hover menu */
 .hover-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     padding: 5px 10px;
     font-size: 14px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 999;
 }
   
 .app-title-container:hover .hover-menu {
@@ -64,13 +59,7 @@
 }
 
 /* Styles for dropdown menu and navigation links */
-.dropdown-toggle {
-    cursor: pointer;
-}
-
 .dropdown-menu {
-    display: none;
-    position: absolute;
     background-color: #659DBD;
     border: 1px solid #ccc;
     padding: 10px;
@@ -78,7 +67,6 @@
 }
 
 .dropdown-menu a {
-    display: block;
     padding: 8px 12px;
     color: #fff;
     text-decoration: none;
@@ -87,13 +75,4 @@
 
 .dropdown-menu a:hover {
     color: rgba(255, 197, 109, 1);
-}
-
-.dropdown-menu li {
-    list-style-type: none;
-    margin: 5px 0;
-}
-
-.dropdown.open .dropdown-menu {
-    display: block;
 }

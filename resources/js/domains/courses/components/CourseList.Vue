@@ -5,7 +5,6 @@ import { Course } from '../types';
 const props = defineProps({
   courses: { type: Array as PropType<Course[]> }
 });
-
 </script>
 
 <template>

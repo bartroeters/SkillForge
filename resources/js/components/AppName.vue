@@ -4,11 +4,8 @@ import HoverMenu from './HoverMenu.vue';
 </script>
 
 <template>
-  <div
-    class="app-title-container"
-    @mouseenter="HoverMenu.toggleHoverMenu"
-    @mouseleave="HoverMenu.toggleHoverMenu"
-    >
+  <div class="app-title-container" >
+    
   <router-link
     class="app-title"
     :to="isLoggedIn
@@ -19,7 +16,6 @@ import HoverMenu from './HoverMenu.vue';
   </router-link>
 
   <hover-menu
-    :is-visible="HoverMenu.isHoverMenuVisible"
     :text="isLoggedIn
     ? 'Go to dashboard'
     : 'Go to home page'"

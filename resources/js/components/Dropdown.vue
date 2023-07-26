@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
 
-const { text, className, withDelay } = defineProps<{
+const { text, className, closeWithDelay, timeout } = defineProps<{
   text: string,
-  className: string,
-  withDelay?: boolean,
+  className?: string,
+  closeWithDelay?: boolean,
+  timeout?: number
 }>();
 
 const isDropdownOpen = ref(false);
@@ -18,7 +19,7 @@ function toggleDropdown() {
 function closeDropdownWithDelay() {
   timeoutId = window.setTimeout(() => {
       isDropdownOpen.value = false;
-  }, 1800);
+  }, timeout || 1000);
 }
 
 function clearCloseDropdownTimeout() {
@@ -37,31 +38,18 @@ watchEffect(() => {
 
 <template>
   <span>
-    <a role="button" @click="toggleDropdown">
+    <a role="button" @click="toggleDropdown" style="cursor: pointer;">
       {{ text }}
     </a>
 
     <ul
       v-show="isDropdownOpen"
       :class="className"
-      @mouseleave="withDelay ? closeDropdownWithDelay : undefined"
-      @mouseenter="withDelay ? clearCloseDropdownTimeout : undefined"
+      style="position: absolute;"
+      @mouseleave="closeWithDelay ? closeDropdownWithDelay() : undefined"
+      @mouseenter="closeWithDelay ? clearCloseDropdownTimeout() : undefined"
       >
-      <slot />
+      <slot style="display: block;"/>
     </ul>
   </span>
 </template>
-
-<style scoped>
-a {
-  cursor: pointer;
-}
-
-ul {
-  position: absolute;
-}
-
-ul a {
-  display: block;
-}
-</style>

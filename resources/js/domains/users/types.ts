@@ -4,6 +4,9 @@ export interface User {
   lastName: string
   email: string
   isAdmin: boolean
+  createdAt: string;
+  updatedAt: string;
+  courseIds: number[];
 };
 
 export interface UserToRegister extends User {

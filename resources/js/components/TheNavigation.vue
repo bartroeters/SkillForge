@@ -16,7 +16,7 @@ function redirectUponLogout() {
 
     <div class="navigation-links">
       <span v-if="isLoggedIn">
-        <dropdown :text="'Browse Courses'" class-name="dropdown-menu" :withDelay="true">
+        <dropdown :text="'Browse Courses'" class-name="dropdown-menu" :closeWithDelay="true" :timeout="1350">
           <router-link :to="{ name: 'courses.overview' }">All Courses</router-link>
           <router-link :to="{ name: 'categories.overview' }">Disciplines</router-link>
         </dropdown>

@@ -1,4 +1,4 @@
-import {User} from './types';
+import { User } from './types';
 import { storeModuleFactory } from 'services/store';
 import { createDashboardRoute } from 'services/router/factory';
 import DashboardVue from './pages/Dashboard.vue';

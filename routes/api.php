@@ -24,10 +24,9 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::resource('courses', CourseController::class);
 Route::resource('categories', CategoryController::class);
+Route::resource('users', UserController::class);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('me', [AuthController::class, 'me']);
-    Route::resource('users', UserController::class);
-    Route::get('users', UserController::class, 'dashboard');
 });

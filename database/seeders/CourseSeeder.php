@@ -14,8 +14,18 @@ class CourseSeeder extends Seeder
      */
     public function run(): void
     {
-        Course::factory(9)->create()->each(function (Course $course) {
-            $randomUserIds = User::inRandomOrder()->pluck('id')->random(rand(7, min(8, 10)));
+        $userIds = User::pluck('id')->all();
+        $numCourses = 9;
+        
+        Course::factory($numCourses)->create()->each(function (Course $course) use (&$userIds, $numCourses) {
+            $numStudents = max(1, intval(count($userIds) / $numCourses));
+            
+            if ($course->id === $numCourses) {
+                $numStudents = count($userIds);
+            };
+            
+            $randomUserIds = array_splice($userIds, 0, $numStudents);
+
             $randomCategoryIds = rand(1, 100) <= 75
                 ? Category::inRandomOrder()->pluck('id')->random(1)
                 : Category::inRandomOrder()->pluck('id')->random(2);

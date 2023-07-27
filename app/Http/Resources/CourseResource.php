@@ -24,9 +24,9 @@ class CourseResource extends JsonResource
             'thumbnail' => $this->thumbnail,
             'price' => $this->price,
             'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
             'categoryIds' => $this->categories->pluck('id'),
-            'userIds' => $this->users->pluck('id')
+            'studentIds' => $this->students->pluck('id'),
+            'lessonIds' => $this->lessons->pluck('id')
         ];
     }
 }

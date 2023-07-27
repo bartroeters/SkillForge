@@ -20,12 +20,12 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './resources/js'),
             'components': path.resolve(__dirname, './resources/js/components'),
             'domains': path.resolve(__dirname, './resources/js/domains'),
             'helpers': path.resolve(__dirname, './resources/js/helpers'),
             'routes': path.resolve(__dirname, './resources/js/routes'),
-            'services': path.resolve(__dirname, './resources/js/services')
+            'services': path.resolve(__dirname, './resources/js/services'),
+            '@': path.resolve(__dirname, './resources/js')
         },
     },
 });

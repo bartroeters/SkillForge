@@ -4,4 +4,8 @@ export interface Course {
   description: string;
   thumbnail: string;
   price: number;
+  createdAt: string;
+  categoryIds: number[];
+  studentIds: number[];
+  lessonIds: number[];
 }

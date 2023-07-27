@@ -5,7 +5,6 @@ export interface User {
   email: string
   isAdmin: boolean
   createdAt: string;
-  updatedAt: string;
   courseIds: number[];
 };
 

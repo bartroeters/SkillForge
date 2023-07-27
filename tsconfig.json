@@ -13,13 +13,13 @@
         "moduleResolution": "node",
         "baseUrl": "./resources/js",
         "paths": {
-            "@/*": ["./*"],
             "components/*": ["./components/*"],
             "domains/*": ["./domains/*"],
             "helpers/*": ["./helpers/*"],
             "routes/*": ["./routes/*"],
             "services/*": ["./services/*"],
-            "types/*": ["./types/*"]
+            "types/*": ["./types/*"],
+            "@/*": ["./*"]
         },
         "jsx": "preserve",
         "strict": true

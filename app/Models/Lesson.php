@@ -9,6 +9,7 @@ class Lesson extends BaseModel
     use HasFactory;
 
     protected $fillable = [
+        'tutorId',
         'title',
         'description',
         'videoContent',

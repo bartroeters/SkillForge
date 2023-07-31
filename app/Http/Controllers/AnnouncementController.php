@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Announcement;
 use App\Http\Requests\StoreAnnouncementRequest;
 use App\Http\Requests\UpdateAnnouncementRequest;
+use App\Http\Resources\AnnouncementResource;
 
 class AnnouncementController extends Controller
 {
@@ -13,7 +14,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        return AnnouncementResource::collection(Announcement::all());
     }
 
     /**

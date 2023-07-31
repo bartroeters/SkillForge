@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Source;
 use App\Http\Requests\StoreSourceRequest;
 use App\Http\Requests\UpdateSourceRequest;
+use App\Http\Resources\SourceResource;
 
 class SourceController extends Controller
 {
@@ -13,7 +14,7 @@ class SourceController extends Controller
      */
     public function index()
     {
-        //
+        return SourceResource::collection(Source::all());
     }
 
     /**

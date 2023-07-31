@@ -4,6 +4,7 @@ import { Course } from './types';
 import OverviewVue from './pages/Overview.vue';
 import ShowVue from './pages/Show.vue';
 import DashboardVue from './pages/Dashboard.vue';
+import { computed } from 'vue';
 
 export const COURSE_DOMAIN_NAME = 'courses';
 

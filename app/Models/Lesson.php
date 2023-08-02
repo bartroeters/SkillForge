@@ -23,7 +23,7 @@ class Lesson extends BaseModel
 
     public function tutor()
     {
-        return $this->belongsTo(User::class, 'userId');
+        return $this->belongsTo(User::class, 'tutorId');
     }
 
     public function notes()

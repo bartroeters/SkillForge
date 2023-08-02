@@ -93,7 +93,7 @@ class User extends BaseModel implements JWTSubject, AuthenticatableContract, Aut
 
     public function lessons()
     {
-        return $this->belongsToMany(Lesson::class);
+        return $this->belongsTo(Lesson::class);
     }
 
     public function notes()

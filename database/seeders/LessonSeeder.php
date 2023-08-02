@@ -15,19 +15,33 @@ class LessonSeeder extends Seeder
      */
     public function run(): void
     {
-        Lesson::factory(100)->create()->each(function (Lesson $lesson) {
-            $tutor = User::inRandomOrder()->where('is_admin', true)->first();
+        // Get all tutors who are admins
+        $adminTutors = User::where('is_admin', true)->get();
 
-            $courses = Course::whereHas('students', function ($query) use ($tutor) {
-                $query->where('user_id', $tutor->id);
-            })->inRandomOrder()->take(9)->get();
+        Lesson::factory(90)->create()->each(function (Lesson $lesson) use ($adminTutors) {
+            // Select a random tutor from the admin tutors
+            $tutor = $adminTutors->random();
 
-            $randomCourseIds = $courses->pluck('id')->toArray();
+            // Get the courses associated with the selected tutor using table aliases
+            $coursesForTutor = $tutor->courses()->select('courses.id')->pluck('id')->toArray();
 
+            // Generate an array of course IDs that are not already associated with the tutor
+            $availableCourseIds = Course::whereNotIn('id', $coursesForTutor)->inRandomOrder()->pluck('id')->take(2 - count($coursesForTutor));
+
+            // Associate the lesson with the generated IDs
+            $lesson->courses()->attach($availableCourseIds);
+
+            // Generate an array of source IDs
             $randomSourceIds = Source::inRandomOrder()->pluck('id')->random(rand(2, min(6, Source::count())));
 
-            $lesson->courses()->sync($randomCourseIds);
+            // Associate the lesson with the generated source IDs
             $lesson->sources()->sync($randomSourceIds);
+
+            // Associate the lesson with the tutor
+            $lesson->tutor()->associate($tutor);
+
+            // Save the lesson with the associated tutor
+            $lesson->save();
         });
     }
 }

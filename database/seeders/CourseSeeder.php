@@ -14,14 +14,22 @@ class CourseSeeder extends Seeder
      */
     public function run(): void
     {
-        Course::factory(9)->create()->each(function (Course $course) {
-            $randomUserIds = User::inRandomOrder()->pluck('id')->random(rand(6, 9));
-            $randomCategoryIds = rand(1, 100) <= 75
-                ? Category::inRandomOrder()->pluck('id')->random(1)
-                : Category::inRandomOrder()->pluck('id')->random(2);
+        $me = User::find(1);
+        $courses = Course::factory(9)->create();
 
-            $course->students()->sync($randomUserIds);
-            $course->categories()->sync($randomCategoryIds);
-        });
+        $numOfCoursesToEnroll = 3;
+
+        foreach ($courses as $course) {
+            $randomUserIds = User::inRandomOrder()
+                ->where('id', '!=', 1)
+                ->pluck('id')
+                ->random(rand(12, 19));
+
+            $numCoursesEnrolled = $me->courses()->count();
+
+            $course->students()->sync(
+                $numCoursesEnrolled < $numOfCoursesToEnroll ? $randomUserIds->prepend(1) : $randomUserIds
+            );
+        }
     }
 }

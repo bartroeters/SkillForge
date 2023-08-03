@@ -30,6 +30,12 @@ class CourseSeeder extends Seeder
             $course->students()->sync(
                 $numCoursesEnrolled < $numOfCoursesToEnroll ? $randomUserIds->prepend(1) : $randomUserIds
             );
+
+            $randomCategoryIds = rand(1, 100) <= 75
+                ? Category::inRandomOrder()->pluck('id')->random(1)
+                : Category::inRandomOrder()->pluck('id')->random(2);
+                
+            $course->categories()->sync($randomCategoryIds);
         }
     }
 }

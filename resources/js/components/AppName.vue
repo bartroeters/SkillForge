@@ -17,7 +17,7 @@ import HoverMenu from './HoverMenu.vue';
 
   <hover-menu
     :text="isLoggedIn
-    ? 'Go to dashboard'
+    ? 'Go to your dashboard'
     : 'Go to home page'"
     class-name="hover-menu"
     />

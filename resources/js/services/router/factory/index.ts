@@ -31,7 +31,7 @@ export const createOverviewRoute = (module: string, component: RouteComponent, m
 });
 
 export const createEditRoute = (module: string, component: RouteComponent, meta?: Meta) => ({
-  path: `/${module}/edit`,
+  path: `/${module}/:id/edit`,
   name: module + EDIT_PAGE_NAME,
   component,
   meta: meta ? meta : defaultMeta,

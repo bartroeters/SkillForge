@@ -15,7 +15,7 @@ class CourseSeeder extends Seeder
     public function run(): void
     {
         $me = User::find(1);
-        $courses = Course::factory(9)->create();
+        $courses = Course::factory(12)->create();
 
         $numOfCoursesToEnroll = 3;
 

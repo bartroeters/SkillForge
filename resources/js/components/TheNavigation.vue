@@ -16,7 +16,7 @@ function redirectUponLogout() {
 
     <div class="navigation-links">
       <span v-if="isLoggedIn">
-        <dropdown :text="'Browse Courses'" class-name="dropdown-menu" :closeWithDelay="true" :timeout="1350">
+        <dropdown :text="'Browse Courses'" class-name="dropdown-menu" :closeWithDelay="true">
           <router-link :to="{ name: 'courses.overview' }">All Courses</router-link>
           <router-link :to="{ name: 'categories.overview' }">Disciplines</router-link>
         </dropdown>
@@ -24,10 +24,13 @@ function redirectUponLogout() {
         <a @click="logout(); redirectUponLogout()">Logout</a>
       </span>
 
-      <span v-if="!isLoggedIn">
+      <span v-if="!isLoggedIn" class="auth-links">
         <router-link :to="{ name: 'courses.overview' }">All Courses</router-link>
         <router-link :to="{ name: 'categories.overview' }">Disciplines</router-link>
-        <router-link :to="{ name: 'login' }">Login</router-link>
+        <dropdown :text="'Account'" class-name="dropdown-menu" :closeWithDelay="true">
+          <router-link :to="{ name: 'login' }">Login</router-link>
+          <router-link :to="{ name: 'register' }">Register</router-link>
+        </dropdown>
       </span>
     </div>
   </div>

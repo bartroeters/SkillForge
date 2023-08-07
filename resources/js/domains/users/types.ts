@@ -4,8 +4,8 @@ export interface User {
   lastName: string
   email: string
   isAdmin: boolean
-  createdAt: string;
-  courseIds: number[];
+  createdAt: string
+  courseIds: number[]
 };
 
 export interface UserToRegister extends User {

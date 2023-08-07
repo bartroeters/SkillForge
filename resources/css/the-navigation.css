@@ -76,3 +76,14 @@
 .dropdown-menu a:hover {
     color: rgba(255, 197, 109, 1);
 }
+
+/* Styles for authentication links */
+.auth-links {
+    display: flex;
+}
+
+.auth-links-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 14px;
+}

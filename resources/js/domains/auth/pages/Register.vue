@@ -6,13 +6,15 @@ import { login } from '..';
 import { goToRoute } from 'services/router';
 
 const userToRegister = ref<UserToRegister>({
-  id: 0,
-  firstName: '',
-  lastName: '',
-  email: '',
-  isAdmin: false,
-  password: '',
-  repeatedPassword: ''
+id: 0,
+firstName: '',
+lastName: '',
+email: '',
+isAdmin: false,
+password: '',
+repeatedPassword: '',
+createdAt: '',
+courseIds: []
 });
 
 const registerUser = async () => {
@@ -23,52 +25,47 @@ const registerUser = async () => {
 </script>
 
 <template>
-  <h2>Register</h2>
-  
-  <div>
-    <form @submit.prevent="registerUser">
-      <div>
+  <div class="login-container">
+    <form class="auth-form" @submit.prevent="registerUser">
+      <h1>Register</h1>
+
+      <div class="auth-input">
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" v-model="userToRegister.firstName">
+        <input type="text" id="firstName" v-model="userToRegister.firstName" class="input-field" />
       </div>
-      
-      <div>
+
+      <div class="auth-input">
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" v-model="userToRegister.lastName">
+        <input type="text" id="lastName" v-model="userToRegister.lastName" class="input-field" />
       </div>
-      
-      <div>
+
+      <div class="auth-input">
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="userToRegister.email">
+        <input type="email" id="email" v-model="userToRegister.email" class="input-field" />
       </div>
-      
-      <div>
+
+      <div class="auth-input">
         <label for="isAdmin">Is Admin:</label>
-        <input type="checkbox" id="isAdmin" v-model="userToRegister.isAdmin">
+        <input type="checkbox" id="isAdmin" v-model="userToRegister.isAdmin" class="checkbox-input" />
+      </div>
+
+      <div class="auth-input">
+        <label for="password">Password:</label>
+        <input v-model="userToRegister.password" type="password" name="password" class="input-field" />
+      </div>
+
+      <div class="auth-input">
+        <label for="repeatedPassword">Repeat password:</label>
+        <input v-model="userToRegister.repeatedPassword" type="password" name="repeatedPassword" class="input-field" />
       </div>
 
       <div>
-        <label for="email">Password:</label>
-        <input
-          v-model="userToRegister.password"
-          type="password"
-          name="password"
-          />
-      </div>
-
-      <div>
-        <label for="password">Repeat password:</label>
-        <input
-          v-model="userToRegister.repeatedPassword"
-          type="password"
-          name="repeatedPassword"
-          />
-      </div>
-      
-      <div>
-        <button>Sign up</button>
+        <button class="auth-button">Sign up</button>
       </div>
     </form>
   </div>
 </template>
-  
+
+<style scoped>
+@import '../../../../css/auth-form-page.css';
+</style>

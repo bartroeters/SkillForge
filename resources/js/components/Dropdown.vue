@@ -19,7 +19,7 @@ function toggleDropdown() {
 function closeDropdownWithDelay() {
   timeoutId = window.setTimeout(() => {
       isDropdownOpen.value = false;
-  }, timeout || 1000);
+  }, timeout || 1350);
 }
 
 function clearCloseDropdownTimeout() {

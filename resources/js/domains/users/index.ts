@@ -27,6 +27,6 @@ export const getLessonValue = (lessonId: number) => {
   return lessonStore.getters.byId(lessonId).value;
 };
 
-export const getCourseTitle = (courseId: number) => {
-  return courseStore.getters.byId(courseId).value?.title;
+export const getCourseValue = (courseId: number) => {
+  return courseStore.getters.byId(courseId).value;
 };

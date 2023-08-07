@@ -66,7 +66,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## ???
+Problems that perist
+* LessonSeeder does not work optimally. Try fix it using Chat GPT.
 
-* Change the hover menu so the text is different if the web user is currently on the page the text it says to go to.
-* Toast messages do not look good.
-* LessonSeeder does not work optimally
+Small issues
+* Toast messages do not look good. 
+
+8/7/23:
+* Correct register functionality in the backend
+* Beautify Courses Overview Page & make links work.
+* Make Category overview Page.
+* Beautify Category Overview Page & make links work.

@@ -1,15 +1,72 @@
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { Course } from '../types';
+import Course from '../types';
+import { getCategoryValue } from '..';
+import { getCategoryName } from '..';
+import Category from 'domains/categories/types';
 
 const props = defineProps({
-  courses: { type: Array as PropType<Course[]> }
+  courses: { type: Array as PropType<Course[]> },
+  categories: { type: Array as PropType<Category[]> }
 });
 </script>
 
 <template>
-  <div v-for="(course, index) in props.courses" :key="index">
-    <div>{{ course.title }}</div>
-    <img :src="course.thumbnail" alt="Course Thumbnail">
+  <div class="course-grid">
+    <div v-for="(course, index) in props.courses" :key="index" class="course-card">
+      <div class="course-thumbnail">
+        <img :src="course.thumbnail" :alt="course.title" />
+      </div>
+
+      <div class="course-details">
+        <h3 class="course-title">{{ course.title }}</h3>
+
+        <p class="course-description">{{ course.description }}</p>
+
+        <div v-for="(categoryId, index) in course.categoryIds" :key="index" class="course-category">
+          Category: {{ getCategoryValue(categoryId).name}}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.course-thumbnail img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.course-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.course-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.course-category {
+  font-size: 12px;
+  color: #007bff;
+  margin-top: auto;
+}
+</style>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { getLessonValue, userCourses } from '..';
-import { showAllContent, toggleContent } from '../../../components/get-formatted-content';
+import { showAllContent, toggleContent, getFormattedItemIds } from 'helpers/get-formatted-content';
 import HoverMenu from 'components/HoverMenu.vue';
+import Course from 'domains/courses/types';
 </script>
 
 <template>
@@ -25,16 +26,19 @@ import HoverMenu from 'components/HoverMenu.vue';
           />
         </router-link>
 
-      <!-- try `getFormattedContent(course.value?.lessonIds, course.value?.id, 4)` -->
-
-      <router-link
-        v-for="(lessonId, index) in course.value?.lessonIds.slice(0, showAllContent[course.value?.id] ? undefined : 3)"
-        :key="index"
-        :to="{ name: 'lessons.show', params: { id: lessonId } }"
-        class="show-lesson-link"
-        >
-        {{ getLessonValue(lessonId)?.title }}
-      </router-link>
+        <router-link
+          v-for="(lessonId, index) in getFormattedItemIds(
+            course.value?.lessonIds,
+            id => id,
+            3,
+            course.value?.id
+            )"
+          :key="index"
+          :to="{ name: 'lessons.show', params: { id: lessonId } }"
+          class="show-lesson-link"
+          >
+          {{ getLessonValue(lessonId)?.title }}
+        </router-link>
 
       <button @click="toggleContent(course.value?.id)" class="toggle-content-button">
         {{ showAllContent[course.value?.id] ? 'Show Less &uarr;' : 'Show More Lessons &darr;' }}

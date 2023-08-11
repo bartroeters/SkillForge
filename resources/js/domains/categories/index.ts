@@ -18,3 +18,7 @@ export const getSortedCategories = () => {
     (categoryA, categoryZ) => categoryA.name.localeCompare(categoryZ.name)
   );
 };
+
+export const getCategoryValue = (categoryId: number): Category => {
+  return categoryStore.getters.byId(categoryId).value;
+};

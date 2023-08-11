@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue';
 import Course from '../types';
-import { getCategoryValue } from '..';
-import { getCategoryName } from '..';
+import { getCategoryValue } from 'domains/categories';
 import Category from 'domains/categories/types';
 
 const props = defineProps({
@@ -24,7 +23,7 @@ const props = defineProps({
         <p class="course-description">{{ course.description }}</p>
 
         <div v-for="(categoryId, index) in course.categoryIds" :key="index" class="course-category">
-          Category: {{ getCategoryValue(categoryId).name}}
+          Category: {{ getCategoryValue(categoryId)?.name}}
         </div>
       </div>
     </div>

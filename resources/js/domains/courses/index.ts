@@ -16,13 +16,3 @@ export const courseRoutes = [
   createShowRoute(COURSE_DOMAIN_NAME, ShowVue),
   createDashboardRoute(COURSE_DOMAIN_NAME, DashboardVue)
 ];
-
-export const getCategoryValue = (categoryId: number): Category => {
-  console.log(categoryId);
-  
-  return categoryStore.getters.byId(categoryId).value;
-};
-
-export const getCategoryName = (categoryId: number) => {
-  return categoryStore.getters.byId(categoryId).value?.name;
-};

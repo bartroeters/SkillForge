@@ -1,54 +1,48 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { getLessonValue, userCourses } from '..';
-import { showAllContent, toggleContent, getVisibleItemIds, getVisibleItems } from 'helpers/get-formatted-content';
+import { toggleContent, setItemVisibility, setGroupVisibility, getVisibleItems, getVisibleItemIds } from 'helpers/get-formatted-content';
 import HoverMenu from 'components/HoverMenu.vue';
 import Course from 'domains/courses/types';
 import { courseStore } from 'domains/courses';
 
 const courses = courseStore.getters.all;
 
+const courseVisibility = ref(setItemVisibility.value);
+const lessonVisibility = ref<Record<number, boolean>>(setGroupVisibility.value);
+
 courseStore.actions.getAll();
-
-// Define a ref to hold the flag for visible courses
-const showVisibleCourses = ref(true);
-
-// Define a function to toggle the visibility of courses
-function toggleCoursesVisibility() {
-  toggleContent('visibleCourses');
-}
 </script>
 
+
 <template>
+  <div>
+    <div v-for="(course, index) in getVisibleItems(courses, 3)" :key="index">
+      ({{ index }})
+      {{ course.title }}
+    </div>
+
+    <button @click="toggleContent()">
+      {{ courseVisibility ? 'Hide All Courses' : 'Show All Courses' }}
+    </button>
+
+    <div v-for="(course, index) in userCourses" :key="index">
+      <div v-for="(lessonId, index) in getVisibleItemIds(course.value?.lessonIds, course.value?.id, 3)" :key="index">
+        ({{ index }})
+        {{ getLessonValue(lessonId)?.title }}
+      </div>
+
+      <button @click="toggleContent(course.value?.id)">
+        {{ lessonVisibility[course.value?.id] ? 'Show Less &uarr;' : 'Show More Lessons &darr;' }}
+      </button>
+    </div>
+  </div>
+</template>
+
+<!-- <template>
     <h3>
       Courses you are enrolled in as a student
     </h3>
-
-    <!-- <div v-for="(course, index) in getVisibleItems(courses, 3)" :key="index">
-      {{ course.title }}
-    </div>
-
-    <div v-for="(course, index) in courses" :key="index">
-      {{ course.title }}
-    </div> -->
-
-      <!-- Toggle button using the toggleCoursesVisibility function -->
-    <button @click="toggleCoursesVisibility" class="toggle-content-button">
-      {{ showAllContent['visibleCourses'] ? 'Show Less &uarr;' : 'Show More Lessons &darr;' }}
-    </button>
-
-    <!-- Render the appropriate div section based on the showAllContent flag -->
-    <div v-if="showAllContent['visibleCourses']">
-      <div v-for="(course, index) in getVisibleItems(courses, 3)" :key="index">
-        {{ course.title }}
-      </div>
-    </div>
-    
-    <div v-else>
-      <div v-for="(course, index) in courses" :key="index">
-        {{ course.title }}
-      </div>
-    </div>
 
     <div v-for="(course, index) in userCourses" :key="index" class="course-wrapper">
       <router-link
@@ -80,4 +74,4 @@ function toggleCoursesVisibility() {
 
 <style scoped>
 @import '../../../../css/user-dashboard.css';
-</style>
+</style> -->

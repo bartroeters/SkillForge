@@ -84,7 +84,8 @@ Problems that persist
 Small issues
 * Toast messages do not look good. 
 
-8/7/23:
+8/14/23:
+* Jasper vrage over `const courseVisibility = ref(setItemVisibility.value);`
 * Correct register functionality in the backend
 * Beautify Courses Overview Page & make links work.
 * Make Category overview Page.

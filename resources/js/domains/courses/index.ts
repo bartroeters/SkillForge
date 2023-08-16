@@ -16,3 +16,7 @@ export const courseRoutes = [
   createShowRoute(COURSE_DOMAIN_NAME, ShowVue),
   createDashboardRoute(COURSE_DOMAIN_NAME, DashboardVue)
 ];
+
+export const getCourseValue = (courseId: number): Course => {
+  return courseStore.getters.byId(courseId).value;
+};

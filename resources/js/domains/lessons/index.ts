@@ -14,3 +14,11 @@ export const lessonRoutes = [
   createCreateRoute(LESSON_DOMAIN_NAME, CreateVue),
   createEditRoute(LESSON_DOMAIN_NAME, EditVue)
 ];
+
+export const getLessonValue = (lessonId: number): Lesson => {
+  return lessonStore.getters.byId(lessonId).value;
+};
+
+export const getLessonValues = (lessonIds: number[]): Lesson[] => {
+  return lessonIds.map(id => lessonStore.getters.byId(id).value);
+};

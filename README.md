@@ -84,8 +84,8 @@ Problems that persist
 Small issues
 * Toast messages do not look good. 
 
-8/14/23:
-* Jasper vrage over `const courseVisibility = ref(setItemVisibility.value);`
+8/17/23:
+* `resources\js\components\HoverMenu.vue` delay doesnt work properly
 * Correct register functionality in the backend
 * Beautify Courses Overview Page & make links work.
 * Make Category overview Page.

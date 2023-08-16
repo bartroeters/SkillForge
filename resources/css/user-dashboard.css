@@ -28,6 +28,25 @@ h4 {
   border: 1px solid #dddddd;
 }
 
+.hover-menu-wrapper:hover .hover-menu {
+  display: block;
+}
+
+.course-title {
+  text-decoration: none;
+}
+
+.hover-menu {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .lesson-link {
   margin-bottom: 3px;
   margin-left: 20px;
@@ -50,21 +69,6 @@ h4 {
   letter-spacing: 0.2px;
   font-weight: 600;
   
-}
-
-.hover-menu {
-  display: none;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 5px 10px;
-  font-size: 14px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.course-title-wrapper:hover .hover-menu {
-  display: block;
 }
 
 .toggle-content-button {

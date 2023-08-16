@@ -1,35 +1,42 @@
 <script setup lang="ts">
-import { getLessonValue, lessonsByTutor } from '..';
+import { computed } from 'vue';
+import { getVisibleItems, setItemVisibility, toggleContent } from 'helpers/get-formatted-content';
+import { lessonsByTutor } from '..';
+import { getLessonValue, getLessonValues } from 'domains/lessons';
+import HoverMenu from 'components/HoverMenu.vue';
+
+const lessonVisibility = computed(() => setItemVisibility.value);
 </script>
 
 <template>
-  <h3>
-    Lessons you provide as a tutor
-  </h3>
+  <h3>Lessons you provide as a tutor</h3>
 
   <div class="course-wrapper">
-    <router-link
-      :to="{ name: 'lessons.create' }"
-      class="create-lesson-link"
-      >
+    <router-link :to="{ name: 'lessons.create' }" class="create-lesson-link">
       Upload new lesson
     </router-link>
 
-    <div v-for="(lesson, index) in lessonsByTutor" class="lesson-wrapper">
-      <router-link
-        :key="index"
-        :to="{ name: 'lessons.show', params: { id: lesson.id } }"
-        class="show-lesson-link"
-        >
-        {{ getLessonValue(lesson.id).title }} ({{ lesson.courseIds.join(', ') }})
-      </router-link>
+    <div v-for="(lesson, index) in getVisibleItems(lessonsByTutor, 5)" class="lesson-wrapper">
+      <div class="hover-menu-wrapper">
+        <router-link :key="index" :to="{ name: 'lessons.show', params: { id: lesson.id } }" class="show-lesson-link">
+          {{ getLessonValue(lesson.id).title }} ({{ lesson.courseIds.join(', ') }})
+        </router-link>
 
-      <router-link
-        :to="{name: 'lessons.edit', params: {id: lesson.id}}"
-        class="edit-lesson-link">
+        <hover-menu
+          :text="`This lesson is taught in these courses: ${getLessonValues(lesson.courseIds).map(lesson => lesson.title).join(', ')}`"
+          :delay="2500"
+          class-name="hover-menu"
+          />
+      </div>
+
+      <router-link :to="{name: 'lessons.edit', params: {id: lesson.id}}" class="edit-lesson-link">
         edit
       </router-link>
     </div>
+
+    <button @click="toggleContent()" class="toggle-content-button">
+      {{ lessonVisibility ?  'Show less &uarr;' : 'Show more lessons &darr;'  }}
+    </button>
   </div>
 </template>
 

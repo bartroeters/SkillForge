@@ -5,10 +5,9 @@ import { useRoute } from 'vue-router';
 </script>
 
 <template>
-  <div class="app-title-container" >
-    
+  <div class="app-name-container" >
     <router-link
-      class="app-title"
+      class="app-name"
       :to="isLoggedIn
       ? { name: 'users.dashboard' }
       : { name: 'courses.overview' }"
@@ -24,7 +23,7 @@ import { useRoute } from 'vue-router';
         : ((useRoute().name === 'courses.overview')
           ? 'Viewing home page'
           : 'Go to home page')"
-      class-name="hover-menu"
+          class-name="hover-menu"
     />
   </div>
 </template>

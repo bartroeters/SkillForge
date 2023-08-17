@@ -24,7 +24,7 @@ const lessonVisibility = computed(() => setItemVisibility.value);
 
         <hover-menu
           :text="`This lesson is taught in these courses: ${getLessonValues(lesson.courseIds).map(lesson => lesson.title).join(', ')}`"
-          :delay="2500"
+          :animation-delay=1500
           class-name="hover-menu"
           />
       </div>

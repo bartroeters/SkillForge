@@ -85,7 +85,7 @@ Small issues
 * Toast messages do not look good. 
 
 8/17/23:
-* `resources\js\components\HoverMenu.vue` delay doesnt work properly
+* `resources\js\components\HoverMenu.vue` the hover menu shouldnt automatically add styling when no class-name was added. try: add a class to the parent component
 * Correct register functionality in the backend
 * Beautify Courses Overview Page & make links work.
 * Make Category overview Page.

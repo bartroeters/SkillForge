@@ -28,23 +28,12 @@ h4 {
   border: 1px solid #dddddd;
 }
 
-.hover-menu-wrapper:hover .hover-menu {
+.hover-menu-wrapper:hover .hover-menu-immutable {
   display: block;
 }
 
 .course-title {
   text-decoration: none;
-}
-
-.hover-menu {
-  display: none;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 5px 10px;
-  font-size: 14px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .lesson-link {

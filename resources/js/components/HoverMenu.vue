@@ -1,36 +1,53 @@
 <script setup lang="ts">
-const { text, className, animationDelay } = defineProps<{
+const { text, className, animationDelay, fadeAnimationDuration, opacity } = defineProps<{
   text: String;
-  animationDelay?: number;
   className?: String;
+  animationDelay?: number;
+  fadeAnimationDuration?: number;
+  opacity?: number;
 }>();
 </script>
 
+<!-- IMPORTANT: Enabling Hover Menu Visibility -->
+<!-- To make the hover menu appear when hovering over an element, follow these steps: -->
+<!-- 1. Wrap the hover menu in a parent element along with the element(s) that trigger the hover. -->
+<!-- 2. In your CSS, target the parent element's hover state and adjust the hover menu's display property: -->
+<!-- Example: .example-hover-wrapper:hover .hover-menu-immutable { display: block; } -->
+<!-- This technique utilizes CSS to manage hover interaction without Vue event handlers. -->
+
 <template>
-  <!-- Wrap the hover menu in a block element along the element(s) to hover over -->
   <div
-    :class="[ className, 'is-hover-menu', {'delayed': animationDelay !== undefined} ]"
-    :style="{ '--animation-delay': `${animationDelay}ms` }"
-    >
+    :class="className"
+    class="hover-menu-default-styling hover-menu-immutable"
+    :style="{
+      '--animation-delay': `${animationDelay || 0}ms`,
+      '--fade-animation-duration': `${fadeAnimationDuration || 300}ms`,
+      '--opacity': opacity
+    }"
+  >
     {{ text }}
   </div>
 </template>
 
 <style scoped>
-.is-hover-menu {
-  display: none;
+/* Default styling. Apply CSS in the parent component to overwrite defaults. */
+.hover-menu-default-styling {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Immutable properties. */
+.hover-menu-immutable {
+  display: none; /* Initially hidden */
   position: absolute;
-  z-index: 999;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.is-hover-menu.delayed {
-  animation: fadeInAndSlideDown 0.2s ease-in-out var(--animation-delay) forwards;
-}
-
-.is-hover-menu:not(.delayed) {
-  animation: fadeInAndSlideDown 0.2s ease-in-out forwards;
+  z-index: 999;
+  /* Animation settings using props */
+  animation: fadeInAndSlideDown var(--fade-animation-duration) ease-in-out var(--animation-delay) forwards;
 }
 
 @keyframes fadeInAndSlideDown {
@@ -38,7 +55,8 @@ const { text, className, animationDelay } = defineProps<{
     opacity: 0;
   }
   100% {
-    opacity: 1;
+    /* Set opacity using props */
+    opacity: var(--opacity, 1);
   }
 }
 </style>

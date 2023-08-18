@@ -19,13 +19,13 @@ const lessonVisibility = computed(() => setItemVisibility.value);
     <div v-for="(lesson, index) in getVisibleItems(lessonsByTutor, 5)" class="lesson-wrapper">
       <div class="hover-menu-wrapper">
         <router-link :key="index" :to="{ name: 'lessons.show', params: { id: lesson.id } }" class="show-lesson-link">
-          {{ getLessonValue(lesson.id).title }} ({{ lesson.courseIds.join(', ') }})
+          {{ getLessonValue(lesson.id).title }}
         </router-link>
 
         <hover-menu
           :text="`This lesson is taught in these courses: ${getLessonValues(lesson.courseIds).map(lesson => lesson.title).join(', ')}`"
           :animation-delay=1500
-          class-name="hover-menu"
+          :opacity=0.8
           />
       </div>
 

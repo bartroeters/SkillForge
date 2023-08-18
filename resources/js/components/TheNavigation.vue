@@ -3,7 +3,7 @@ import { isLoggedIn, logout } from 'domains/auth';
 import { goToOverviewPage } from 'services/router';
 import { COURSE_DOMAIN_NAME } from 'domains/courses';
 import Dropdown from './Dropdown.vue';
-import AppName from './AppName.vue';
+import TheAppName from './TheAppName.vue';
 
 function redirectUponLogout() {
   goToOverviewPage(COURSE_DOMAIN_NAME);
@@ -12,7 +12,7 @@ function redirectUponLogout() {
 
 <template>
   <div class="navigation-bar">
-    <app-name>Skill Forge</app-name>
+    <the-app-name>Skill Forge</the-app-name>
 
     <div class="navigation-links">
       <span v-if="isLoggedIn">

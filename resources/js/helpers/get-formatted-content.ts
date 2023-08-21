@@ -1,18 +1,18 @@
 import { ref } from 'vue';
 
-// Reactive variables to manage visibility states:
-// - `setGroupVisibility` stores visibility state of groups based on their IDs.
-// - `setItemVisibility` stores visibility state of individual items.
-export const setGroupVisibility = ref<Record<number, boolean>>({});
+// Stores visibility state of items.
 export const setItemVisibility = ref<boolean>(false);
 
+// Stores visibility state of foreign IDs.
+export const setForeignIdVisibility = ref<Record<number, boolean>>({});
+
 /**
- * Toggle the visibility state of a group or an individual item.
- * @param id - Optional ID of the group to toggle. If undefined, toggles individual item visibility.
+ * Toggles the visibility state.
+ * @param id - Optional ID of the owner object to toggle visibility for its associated foreign IDs. If undefined, toggles item visibility.
  */
 export const toggleContent = (id?: number): void => {
   if (id !== undefined) {
-    setGroupVisibility.value[id] = !setGroupVisibility.value[id];
+    setForeignIdVisibility.value[id] = !setForeignIdVisibility.value[id];
   } else {
     setItemVisibility.value = !setItemVisibility.value;
   };
@@ -20,36 +20,30 @@ export const toggleContent = (id?: number): void => {
 
 /**
  * Get an array of visible items based on their visibility state.
- * @param items - Record of items with IDs as keys, or undefined.
+ * @param items - Record of items with IDs as keys.
  * @param numOfVisibleItems - Number of items to show when visibility is toggled off.
  * @returns Array of visible items.
  */
 export function getVisibleItems<T>(
-  items: Record<number, T> | undefined,
+  items: Record<number, T>,
   numOfVisibleItems: number
 ): T[] {
-  if (!items) {
-    return [];
-  };
 
   return setItemVisibility.value ? Object.values(items) : Object.values(items).slice(0, numOfVisibleItems);
 };
 
 /**
- * Get an array of visible item IDs based on their group visibility state.
- * @param items - Array of item IDs, or undefined.
- * @param id - ID of the group to which items belong.
- * @param numOfVisibleItems - Number of items to show when group visibility is toggled off.
- * @returns Array of visible item IDs.
+ * Get an array of visible foreign item IDs based on their visibility state.
+ * @param ownerObject - The owner object to which the foreign IDs belong.
+ * @param foreignItemIds - Array of foreign IDs.
+ * @param numOfVisibleItems - Number of items to show when visibility is toggled off.
+ * @returns Array of visible foreign item IDs.
  */
-export function getVisibleItemIds(
-  items: number[] | undefined,
-  id: number,
+export function getVisibleItemIds<T extends { id: number }>(
+  ownerObject: T,
+  foreignIds: number[],
   numOfVisibleItems: number
 ): number[] {
-  if (!items) {
-    return [];
-  };
 
-  return setGroupVisibility.value[id] ? items : items.slice(0, numOfVisibleItems);
+  return setForeignIdVisibility.value[ownerObject.id] ? foreignIds : foreignIds.slice(0, numOfVisibleItems);
 };

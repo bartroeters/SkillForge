@@ -85,8 +85,6 @@ Small issues
 * Toast messages do not look good. 
 
 8/21/23:
-* Review your components, add comments to make them descriptive.
-
 * Correct register functionality in the backend
 * Beautify Courses Overview Page & make links work.
 * Make Category overview Page.

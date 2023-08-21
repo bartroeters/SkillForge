@@ -43,7 +43,8 @@ class User extends BaseModel implements JWTSubject, AuthenticatableContract, Aut
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime'
+        'email_verified_at' => 'datetime',
+        // 'password' => 'hashed'
     ];
 
     /**

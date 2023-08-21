@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { userCourses } from '..';
-import { toggleContent, setGroupVisibility, getVisibleItemIds } from 'helpers/get-formatted-content';
+import { toggleContent, setForeignIdVisibility, getVisibleItemIds } from 'helpers/get-formatted-content';
 import HoverMenu from 'components/HoverMenu.vue';
 import { courseStore } from 'domains/courses';
 import { getLessonValue } from 'domains/lessons';
 
-const lessonVisibility = ref<Record<number, boolean>>(setGroupVisibility.value);
+const lessonVisibility = ref<Record<number, boolean>>(setForeignIdVisibility.value);
+
+const courses = courseStore.getters.all;
 
 courseStore.actions.getAll();
 </script>
@@ -24,7 +26,7 @@ courseStore.actions.getAll();
         </router-link>
           
         <router-link
-          v-for="(lessonId, index) in getVisibleItemIds(course.lessonIds, course.id, 3)"
+          v-for="(lessonId, index) in getVisibleItemIds(course, course.lessonIds, 3)"
           :key="index"
           :to="{ name: 'lessons.show', params: { id: lessonId } }"
           class="show-lesson-link"

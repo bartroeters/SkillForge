@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
@@ -8,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as AuthCanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends BaseModel implements JWTSubject, AuthenticatableContract, AuthCanResetPassword
@@ -44,8 +47,28 @@ class User extends BaseModel implements JWTSubject, AuthenticatableContract, Aut
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        // 'password' => 'hashed'
+        'password' => 'hashed'
     ];
+
+    /**
+     * Set the hashed password attribute.
+     *
+     * @param string $value
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    /**
+     * Get the hashed password attribute.
+     *
+     * @return string
+     */
+    public function getPasswordAttribute()
+    {
+        return $this->attributes['password'];
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

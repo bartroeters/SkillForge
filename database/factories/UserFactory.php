@@ -19,7 +19,6 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $timestamp = fake()->dateTimeBetween('-2 years', '-20 minutes');
-
         return [
             'firstName' => fake()->name(),
             'lastName' => fake()->name(),
@@ -27,7 +26,7 @@ class UserFactory extends Factory
             'emailVerifiedAt' => $timestamp,
             'password' => Hash::make(Str::random(7, 14)),
             'isAdmin' => rand(1, 100) <= 7,
-            'remember_token' => Str::random(10),
+            'rememberToken' => Str::random(10),
             'createdAt' => $timestamp,
             'updatedAt' => $timestamp
         ];

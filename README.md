@@ -84,8 +84,8 @@ Problems that persist
 Small issues
 * Toast messages do not look good. 
 
-8/21/23:
-* Correct register functionality in the backend
+8/23/23:
+* hide password attributes in Payload. Vraag Jeroen om hulp.
 * Beautify Courses Overview Page & make links work.
 * Make Category overview Page.
 * Beautify Category Overview Page & make links work.

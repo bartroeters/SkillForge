@@ -8,8 +8,6 @@ import { getLessonValue } from 'domains/lessons';
 
 const lessonVisibility = ref<Record<number, boolean>>(setForeignIdVisibility.value);
 
-const courses = courseStore.getters.all;
-
 courseStore.actions.getAll();
 </script>
 

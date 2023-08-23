@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'lastName' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'emailVerifiedAt' => $timestamp,
-            'password' => Hash::make(Str::random(7, 14)),
+            'password' => Str::random(7, 14),
             'isAdmin' => rand(1, 100) <= 7,
             'rememberToken' => Str::random(10),
             'createdAt' => $timestamp,

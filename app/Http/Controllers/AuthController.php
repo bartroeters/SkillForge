@@ -114,7 +114,7 @@ class AuthController extends Controller
 
         $user = User::create($validated);
 
-        return new UserOverview($user);
+        return (new UserOverview($user));
 
     }
 

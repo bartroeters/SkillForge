@@ -1,9 +1,8 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserOverview extends JsonResource
@@ -11,12 +10,12 @@ class UserOverview extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array<string, mixed>
      */
-    public function toArray($request)
+    public function toArray(Request $request): array
     {
+        // return parent::toArray($request);
+
         return [
             'id' => $this->id,
             'firstName' => $this->first_name,
@@ -25,7 +24,8 @@ class UserOverview extends JsonResource
             'isAdmin' => $this->is_admin,
             'inviteToken' => $this->inviteToken,
             'createdAt' => $this->created_at,
-            'courseIds' => $this->courses->pluck('id')
+            'courseIds' => $this->courses->pluck('id'),
+            'test' => 'test'
         ];
     }
 }

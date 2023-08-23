@@ -6,8 +6,11 @@ export const setItemVisibility = ref<boolean>(false);
 // Stores visibility state of foreign IDs.
 export const setForeignIdVisibility = ref<Record<number, boolean>>({});
 
+// Stores visibility state of text rows.
+export const setRowVisibility = ref<Record<number, boolean>>({});
+
 /**
- * Toggles the visibility state.
+ * Toggles the visibility state of items or associated foreign IDs.
  * @param id - Optional ID of the owner object to toggle visibility for its associated foreign IDs. If undefined, toggles item visibility.
  */
 export const toggleContent = (id?: number): void => {
@@ -16,6 +19,14 @@ export const toggleContent = (id?: number): void => {
   } else {
     setItemVisibility.value = !setItemVisibility.value;
   };
+};
+
+/**
+ * Toggle the visibility state of text rows for a specific object.
+ * @param id - The ID of the object.
+ */
+export function toggleRows(id: number): void {
+  setRowVisibility.value[id] = !setRowVisibility.value[id];
 };
 
 /**
@@ -47,3 +58,22 @@ export function getVisibleItemIds<T extends { id: number }>(
 
   return setForeignIdVisibility.value[ownerObject.id] ? foreignIds : foreignIds.slice(0, numOfVisibleItems);
 };
+
+/**
+ * Get visible rows based on visibility state.
+ * @param content - The original content.
+ * @param id - The ID of Object that holds the content.
+ * @param numOfVisibleRows - Number of rows to display when visibility is toggled off.
+ * @returns Visible rows of content.
+ */
+export function getVisibleRows(
+  content: string,
+  id: number,
+  numOfVisibleRows: number
+): string {
+
+  console.log(content);
+  
+  // return setRowVisibility.value[id] ? content : content.split('.').slice(0, numOfVisibleRows).join('.');
+  return setRowVisibility.value[id] ? content : content.slice(0,(4*61));
+}

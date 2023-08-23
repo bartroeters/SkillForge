@@ -79,13 +79,13 @@ The purpose of `resources\js\helpers\get-formatted-content.ts` is twofold. First
 The code works properly and is concise, however the loop only works for many-to-many relationships. Looping over any other property of an Object is not possible with the code as it is currently written.
 ## ???
 Problems that persist
-* LessonSeeder does not work optimally. Try fix it using Chat GPT.
+* Unencrypted password show up in payload.
 
 Small issues
 * Toast messages do not look good. 
 
-8/23/23:
-* hide password attributes in Payload. Vraag Jeroen om hulp.
+8/24/23:
+* fucntion `getVisibleRows` in `resources\js\helpers\get-formatted-content.ts` needs to be enhanced
 * Beautify Courses Overview Page & make links work.
 * Make Category overview Page.
 * Beautify Category Overview Page & make links work.

@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { PropType } from 'vue';
+import { PropType, ref } from 'vue';
 import Course from '../types';
 import { getCategoryValue } from 'domains/categories';
 import Category from 'domains/categories/types';
+import { getVisibleRows, toggleRows, setRowVisibility } from 'helpers/get-formatted-content';
 
 const props = defineProps({
   courses: { type: Array as PropType<Course[]> },
   categories: { type: Array as PropType<Category[]> }
 });
+
+const courseDescriptionVisibility = ref<Record<number, boolean>>(setRowVisibility.value);
 </script>
 
 <template>
@@ -20,7 +23,11 @@ const props = defineProps({
       <div class="course-details">
         <h3 class="course-title">{{ course.title }}</h3>
 
-        <p class="course-description">{{ course.description }}</p>
+        <p class="course-description">{{ getVisibleRows(course.description, course.id, 5) }}</p>
+
+        <button v-if="course.description.length" @click="toggleRows(course.id)">
+          {{ courseDescriptionVisibility[course.id] ? '&uarr; Show less' : 'Show more &darr;' }}
+        </button>
 
         <div v-for="(categoryId, index) in course.categoryIds" :key="index" class="course-category">
           Category: {{ getCategoryValue(categoryId)?.name}}

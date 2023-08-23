@@ -47,27 +47,27 @@ class User extends BaseModel implements JWTSubject, AuthenticatableContract, Aut
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed'
+        // 'password' => 'hashed'
     ];
 
     /**
-     * Set the hashed password attribute.
+     * Set the hashed password attribute. (mutator)
      *
      * @param string $value
      */
     public function setPasswordAttribute($value)
     {
-        $this->attributes['password'] = Hash::make($value);
+        $this->attributes["password"] = Hash::make($value);
     }
 
     /**
-     * Get the hashed password attribute.
+     * Get the hashed password attribute. (accessor)
      *
      * @return string
      */
     public function getPasswordAttribute()
     {
-        return $this->attributes['password'];
+        return $this->attributes["password"];
     }
 
     /**

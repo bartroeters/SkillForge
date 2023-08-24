@@ -24,8 +24,7 @@ class UserOverview extends JsonResource
             'isAdmin' => $this->is_admin,
             'inviteToken' => $this->inviteToken,
             'createdAt' => $this->created_at,
-            'courseIds' => $this->courses->pluck('id'),
-            'test' => 'test'
+            'courseIds' => $this->courses->pluck('id')
         ];
     }
 }

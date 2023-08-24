@@ -6,7 +6,7 @@ import HoverMenu from 'components/HoverMenu.vue';
 import { courseStore } from 'domains/courses';
 import { getLessonValue } from 'domains/lessons';
 
-const lessonVisibility = ref<Record<number, boolean>>(setForeignIdVisibility.value);
+const lessonVisibilityFlags = ref<Record<number, boolean>>(setForeignIdVisibility.value);
 
 courseStore.actions.getAll();
 </script>
@@ -19,7 +19,7 @@ courseStore.actions.getAll();
         <router-link :to="{ name: 'courses.dashboard' }" class="course-title">
           <div class="hover-menu-wrapper">
             <h4>{{ course.title }}</h4>
-            <hover-menu :text="`Go to ${course.title} Dashboard`" class-name="hover-menu" />
+            <hover-menu :text="`Go to ${course.title} Dashboard`" />
           </div>
         </router-link>
           
@@ -34,7 +34,7 @@ courseStore.actions.getAll();
         </router-link>
 
         <button  @click="toggleContent(course.id)" class="toggle-content-button">
-          {{ lessonVisibility[course.id] ? 'Show less &uarr;' : 'Show more lessons &darr;' }}
+          {{ lessonVisibilityFlags[course.id] ? 'Show less &uarr;' : 'Show more lessons &darr;' }}
         </button>
       </div>
     </div>

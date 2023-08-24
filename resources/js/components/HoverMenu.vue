@@ -5,7 +5,7 @@ const { text, className, animationDelay, fadeAnimationDuration, opacity } = defi
   animationDelay?: number;
   fadeAnimationDuration?: number;
   opacity?: number;
-}>();
+}>()
 </script>
 
 <!-- IMPORTANT: Enabling Hover Menu Visibility -->

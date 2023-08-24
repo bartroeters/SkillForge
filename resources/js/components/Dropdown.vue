@@ -6,7 +6,7 @@ const { text, className, closeWithDelay, timeout } = defineProps<{
   className?: string,
   closeWithDelay?: boolean,
   timeout?: number
-}>();
+}>()
 
 const isDropdownOpen = ref(false);
 
@@ -33,7 +33,7 @@ watchEffect(() => {
   if (!isDropdownOpen.value && timeoutId !== null) {
     window.clearTimeout(timeoutId);
   }
-});
+})
 </script>
 
 <template>

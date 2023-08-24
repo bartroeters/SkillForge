@@ -12,7 +12,7 @@ export const COURSE_DOMAIN_NAME = 'courses';
 export const courseStore = storeModuleFactory<Course>(COURSE_DOMAIN_NAME);
 
 export const courseRoutes = [
-  createOverviewRoute(COURSE_DOMAIN_NAME, OverviewVue, {auth: false, canSeeWhenLoggedIn: true}),
+  createOverviewRoute(COURSE_DOMAIN_NAME, OverviewVue),
   createShowRoute(COURSE_DOMAIN_NAME, ShowVue),
   createDashboardRoute(COURSE_DOMAIN_NAME, DashboardVue)
 ];

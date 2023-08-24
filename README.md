@@ -84,8 +84,8 @@ Problems that persist
 Small issues
 * Toast messages do not look good. 
 
-8/24/23:
-* fucntion `getVisibleRows` in `resources\js\helpers\get-formatted-content.ts` needs to be enhanced
-* Beautify Courses Overview Page & make links work.
-* Make Category overview Page.
-* Beautify Category Overview Page & make links work.
+8/25/23:
+* Make the component for the sticky title.
+* Make Category Overview Page.
+* Make Show Course Page.
+* Make Show Category Page.

@@ -3,11 +3,11 @@ import { ref } from 'vue';
 // Stores visibility state of items.
 export const setItemVisibility = ref<boolean>(false);
 
-// Stores visibility state of foreign IDs.
+// Stores visibility state of foreign IDs associated with an object.
 export const setForeignIdVisibility = ref<Record<number, boolean>>({});
 
-// Stores visibility state of text rows.
-export const setRowVisibility = ref<Record<number, boolean>>({});
+// Stores visibility state of text rows associated with an object.
+export const setSentenceVisibility = ref<Record<number, boolean>>({});
 
 /**
  * Toggles the visibility state of items or associated foreign IDs.
@@ -18,16 +18,16 @@ export const toggleContent = (id?: number): void => {
     setForeignIdVisibility.value[id] = !setForeignIdVisibility.value[id];
   } else {
     setItemVisibility.value = !setItemVisibility.value;
-  };
-};
+  }
+}
 
 /**
  * Toggle the visibility state of text rows for a specific object.
  * @param id - The ID of the object.
  */
 export function toggleRows(id: number): void {
-  setRowVisibility.value[id] = !setRowVisibility.value[id];
-};
+  setSentenceVisibility.value[id] = !setSentenceVisibility.value[id];
+}
 
 /**
  * Get an array of visible items based on their visibility state.
@@ -41,7 +41,7 @@ export function getVisibleItems<T>(
 ): T[] {
 
   return setItemVisibility.value ? Object.values(items) : Object.values(items).slice(0, numOfVisibleItems);
-};
+}
 
 /**
  * Get an array of visible foreign item IDs based on their visibility state.
@@ -57,23 +57,31 @@ export function getVisibleItemIds<T extends { id: number }>(
 ): number[] {
 
   return setForeignIdVisibility.value[ownerObject.id] ? foreignIds : foreignIds.slice(0, numOfVisibleItems);
-};
+}
 
 /**
- * Get visible rows based on visibility state.
+ * Get visible sentences based on visibility state.
  * @param content - The original content.
- * @param id - The ID of Object that holds the content.
- * @param numOfVisibleRows - Number of rows to display when visibility is toggled off.
- * @returns Visible rows of content.
+ * @param id - The ID of the object that holds the content.
+ * @param numOfVisibleSentences - Number of sentences to display when visibility is toggled off.
+ * @returns Visible sentences of content.
  */
-export function getVisibleRows(
+export function getVisibleSentences(
   content: string,
   id: number,
-  numOfVisibleRows: number
+  numOfVisibleSentences: number
 ): string {
 
-  console.log(content);
+  const sentences = content.split('.');
   
-  // return setRowVisibility.value[id] ? content : content.split('.').slice(0, numOfVisibleRows).join('.');
-  return setRowVisibility.value[id] ? content : content.slice(0,(4*61));
+  if (setSentenceVisibility.value[id]) {
+    return content;
+  } else {
+    const visibleSentences = sentences.slice(0, numOfVisibleSentences);
+    if (visibleSentences.length < sentences.length) {
+      return visibleSentences.join('.') + '.';
+    } else {
+      return content;
+    }
+  }
 }

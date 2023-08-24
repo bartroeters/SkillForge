@@ -5,7 +5,7 @@ import { lessonsByTutor } from '..';
 import { getLessonValue, getLessonValues } from 'domains/lessons';
 import HoverMenu from 'components/HoverMenu.vue';
 
-const lessonVisibility = computed(() => setItemVisibility.value);
+const lessonVisibilityFlags = computed(() => setItemVisibility.value);
 </script>
 
 <template>
@@ -35,7 +35,7 @@ const lessonVisibility = computed(() => setItemVisibility.value);
     </div>
 
     <button @click="toggleContent()" class="toggle-content-button">
-      {{ lessonVisibility ?  'Show less &uarr;' : 'Show more lessons &darr;'  }}
+      {{ lessonVisibilityFlags ?  'Show less &uarr;' : 'Show more lessons &darr;'  }}
     </button>
   </div>
 </template>

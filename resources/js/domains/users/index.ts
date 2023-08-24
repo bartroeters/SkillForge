@@ -11,7 +11,7 @@ export const userStore = storeModuleFactory<User>(USER_DOMAIN_NAME);
 const createDashboardRouteWithLazyLoad = () => import('./pages/Dashboard.vue');
 
 export const userRoutes = [
-  createDashboardRoute(USER_DOMAIN_NAME, createDashboardRouteWithLazyLoad, { auth: true, canSeeWhenLoggedIn: true })
+  createDashboardRoute(USER_DOMAIN_NAME, createDashboardRouteWithLazyLoad)
 ];
 
 export const getUserFullName = (user: User) =>  `${user.firstName} ${user.lastName}`;

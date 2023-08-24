@@ -9,16 +9,16 @@ export const CATEGORY_DOMAIN_NAME = 'categories';
 export const categoryStore = storeModuleFactory<Category>(CATEGORY_DOMAIN_NAME);
 
 export const categoryRoutes = [
-  createOverviewRoute(CATEGORY_DOMAIN_NAME, OverviewPage, {auth: false, canSeeWhenLoggedIn: true}),
+  createOverviewRoute(CATEGORY_DOMAIN_NAME, OverviewPage),
   createShowRoute(CATEGORY_DOMAIN_NAME, ShowVue)
-];
+]
 
 export const getSortedCategories = () => {
   return categoryStore.getters.all.value.sort(
     (categoryA, categoryZ) => categoryA.name.localeCompare(categoryZ.name)
-  );
-};
+  )
+}
 
 export const getCategoryValue = (categoryId: number): Category => {
   return categoryStore.getters.byId(categoryId).value;
-};
+}

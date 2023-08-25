@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import Course from '../types';
+import type Course from '../types';
 import { getCategoryValue } from 'domains/categories';
-import Category from 'domains/categories/types';
+import type Category from 'domains/categories/types';
 import { getVisibleSentences, toggleRows, setSentenceVisibility } from 'helpers/get-formatted-content';
+import PageTitle from 'components/PageTitle.vue';
 import HoverMenu from 'components/HoverMenu.vue';
 
 const props = defineProps({
@@ -11,10 +12,12 @@ const props = defineProps({
   categories: { type: Array as PropType<Category[]> }
 });
 
-const descriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenceVisibility.value);
+const courseDescriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenceVisibility.value);
 </script>
 
 <template>
+  <page-title text="Course Catalog" />
+
   <div class="course-grid">
     <div v-for="course in props.courses" :key="course.id" class="course-card">
       <div class="course-thumbnail">
@@ -39,7 +42,7 @@ const descriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenceVisib
         </p>
 
         <button v-if="course.description.length" @click="toggleRows(course.id)" class="toggle-content-button">
-          {{ descriptionVisibilityFlags[course.id] ? '&uarr; Show less' : 'Read more &darr;' }}
+          {{ courseDescriptionVisibilityFlags[course.id] ? '&uarr; Show less' : 'Read more &darr;' }}
         </button>
 
         <div class="course-categories">
@@ -51,7 +54,7 @@ const descriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenceVisib
                 :to="{name: 'categories.show', params: {id: categoryId}}"
                 class="course-category"
                 >
-                {{ getCategoryValue(categoryId)?.name }}
+                {{ getCategoryValue(categoryId)?.title }}
               </router-link>
 
               <hover-menu
@@ -70,5 +73,5 @@ const descriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenceVisib
 </template>
 
 <style scoped>
-@import '../../../../css/course-list.css';
+@import '../../../../css/course-catalog.css';
 </style>

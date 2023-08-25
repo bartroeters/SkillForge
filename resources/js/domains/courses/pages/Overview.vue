@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CourseCatalog from '../components/CourseCatalog.vue';
 
-import {courseStore} from '..';
+import { courseStore } from '..';
 import { categoryStore } from 'domains/categories';
 
 const courses = courseStore.getters.all;

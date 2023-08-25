@@ -6,7 +6,7 @@ import TheNavigation from 'components/TheNavigation.vue';
   <div class="app-container">
     <TheNavigation />
 
-    <div class="page-title">Sticky Title</div>
+    <div id="page-title" />
 
     <div class="content-container">
       <RouterView />

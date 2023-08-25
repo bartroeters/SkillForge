@@ -84,8 +84,7 @@ Problems that persist
 Small issues
 * Toast messages do not look good. 
 
-8/25/23:
-* Make the component for the sticky title.
-* Make Category Overview Page.
+8/28/23:
+* Beatify Category Overview Page.
 * Make Show Course Page.
 * Make Show Category Page.

@@ -5,9 +5,9 @@ import { useRoute } from 'vue-router';
 </script>
 
 <template>
-  <div class="app-name-container" >
+  <div class="app-title-container" >
     <router-link
-      class="app-name"
+      class="app-title"
       :to="isLoggedIn
       ? { name: 'users.dashboard' }
       : { name: 'courses.overview' }"

@@ -1,0 +1,92 @@
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  letter-spacing: .2px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.category-thumbnail img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.category-title {
+  font-size: 20px;
+  letter-spacing: .5px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.category-title a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.category-title a:hover {
+  color: #0056b3;
+}
+
+.category-title-hover-menu {
+  background-color: #fff;
+  color: #409bfc;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.hover-menu-wrapper:hover .hover-menu-immutable {
+  display: block;
+}
+
+.category-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.toggle-content-button {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12.7px;
+  color: #007bff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-content-button:hover {
+  text-decoration: underline;
+}
+
+.course-label {
+  color: #555;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.category-category {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.category-category:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.courses-link-hover-menu {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #586b81;
+  font-size: inherit;
+}

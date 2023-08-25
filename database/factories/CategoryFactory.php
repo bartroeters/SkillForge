@@ -31,7 +31,8 @@ class CategoryFactory extends Factory
         // $thumbnailPath = include 'database/factories/helpers/thumbnail_downloader.php';
 
         return [
-            'name' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 2), true))),
+            'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 2), true))),
+            'description' => implode("\n\n", fake()->paragraphs(rand(3, 7))),
             // 'thumbnail' => $thumbnailPath,
             'thumbnail' => '/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
         ];

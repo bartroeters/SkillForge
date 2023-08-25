@@ -19,7 +19,8 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'title' => $this->title,
+            'description' => $this->description,
             'thumbnail' => $this->thumbnail,
             'courseIds' => $this->courses->pluck('id')
         ];

@@ -1,5 +1,7 @@
 export default interface Category {
   id: number
-  name: string
+  title: string
+  description: string
   thumbnail: string
+  courseIds: number[]
 };

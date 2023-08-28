@@ -31,9 +31,8 @@ class CourseSeeder extends Seeder
                 $numCoursesEnrolled < $numOfCoursesToEnroll ? $randomUserIds->prepend(1) : $randomUserIds
             );
 
-            $randomCategoryIds = rand(1, 100) <= 75
-                ? Category::inRandomOrder()->pluck('id')->random(1)
-                : Category::inRandomOrder()->pluck('id')->random(2);
+            $numCategories = rand(1, 100) <= 25 ? 1 : rand(2, 4);
+            $randomCategoryIds = Category::inRandomOrder()->pluck('id')->random($numCategories);
                 
             $course->categories()->sync($randomCategoryIds);
         }

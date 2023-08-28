@@ -55,32 +55,52 @@
   color: #333;
 }
 
-.toggle-content-button {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 12.7px;
-  color: #007bff;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+.request-category-info {
+  display: flex;
+  justify-content: space-between;
 }
 
-.toggle-content-button:hover {
+.request-category-info > * {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  letter-spacing: .1px;
+}
+
+.toggle-content-button,
+.show-category-link {
+  display: block;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.toggle-content-button:hover,
+.show-category-link:hover {
   text-decoration: underline;
+}
+
+.category-courses {
+  display: flex;
+  flex-direction: column;
 }
 
 .course-label {
   color: #555;
-  font-size: 14px;
+  font-size: 15px;
   margin-right: 5px;
+  margin-top: 12px;
+  margin-bottom: 3.5px;
 }
 
-.category-category {
+.category-course {
   color: #007bff;
+  font-size: 14px;
   text-decoration: none;
 }
 
-.category-category:hover {
+.category-course:hover {
   color: #0056b3;
   text-decoration: underline;
 }

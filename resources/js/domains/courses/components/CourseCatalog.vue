@@ -6,6 +6,7 @@ import type Category from 'domains/categories/types';
 import { getVisibleSentences, toggleRows, setSentenceVisibility } from 'helpers/get-formatted-content';
 import PageTitle from 'components/PageTitle.vue';
 import HoverMenu from 'components/HoverMenu.vue';
+import Catalog from 'components/Catalog.vue';
 
 const props = defineProps({
   courses: { type: Array as PropType<Course[]> },
@@ -18,58 +19,16 @@ const courseDescriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenc
 <template>
   <page-title text="Course Catalog" />
 
-  <div class="course-grid">
-    <div v-for="course in props.courses" :key="course.id" class="course-card">
-      <div class="course-thumbnail">
-        <img :src="course.thumbnail" :alt="course.title" />
-      </div>
-
-      <div class="course-details">
-        <h3 class="course-title hover-menu-wrapper">
-          <router-link :to="{name: 'courses.show', params: {id: course.id}}">
-            {{ course.title }}
-          </router-link>
-
-          <hover-menu
-            :text="`&rarr; Learn more about this course!`"
-            :animation-delay=1500
-            class="course-title-hover-menu"
-            />
-        </h3>
-
-        <p class="course-description">
-          {{ getVisibleSentences(course.description, course.id, 3) }}
-        </p>
-
-        <button v-if="course.description.length" @click="toggleRows(course.id)" class="toggle-content-button">
-          {{ courseDescriptionVisibilityFlags[course.id] ? '&uarr; Show less' : 'Read more &darr;' }}
-        </button>
-
-        <div class="course-categories">
-          <span class="category-label">Disciplines: </span>
-          
-          <span v-for="(categoryId, index) in course.categoryIds" :key="index">
-            <span class="hover-menu-wrapper">
-              <router-link
-                :to="{name: 'categories.show', params: {id: categoryId}}"
-                class="course-category"
-                >
-                {{ getCategoryValue(categoryId)?.title }}
-              </router-link>
-
-              <hover-menu
-                :text="`&rarr; View all courses within this discipline`"
-                :animation-delay=1500
-                :opacity=0.85
-                class="category-link-hover-menu"
-                />
-            </span>
-            <span v-if="index < course.categoryIds.length - 1">, </span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <catalog
+    :items="courses"
+    :associatedItems="categories"
+    itemType="courses"
+    associatedItemType="categories"
+    :visibilityFlags="courseDescriptionVisibilityFlags"
+    hoverMenuText="&rarr; Learn more about this course!"
+    :animationDelay=1500
+    :hoverMenuOpacity=0.92
+  />
 </template>
 
 <style scoped>

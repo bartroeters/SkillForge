@@ -55,28 +55,48 @@
   color: #333;
 }
 
-.toggle-content-button {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 12.7px;
-  color: #007bff;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+.request-course-info {
+  display: flex;
+  justify-content: space-between;
 }
 
-.toggle-content-button:hover {
+.request-course-info > * {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  letter-spacing: .1px;
+}
+
+.toggle-content-button,
+.show-course-link {
+  display: block;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.toggle-content-button:hover,
+.show-course-link:hover {
   text-decoration: underline;
+}
+
+.course-categories {
+  display: flex;
+  flex-direction: column;
 }
 
 .category-label {
   color: #555;
-  font-size: 14px;
+  font-size: 15px;
   margin-right: 5px;
+  margin-top: 12px;
+  margin-bottom: 3.5px;
 }
 
 .course-category {
   color: #007bff;
+  font-size: 14px;
   text-decoration: none;
 }
 

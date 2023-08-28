@@ -4,10 +4,16 @@ import { courseRoutes } from 'domains/courses';
 import { lessonRoutes } from 'domains/lessons';
 import { userRoutes } from 'domains/users';
 
+const getRedirectPath = () => (isLoggedIn.value ? '/users/dashboard' : '/courses');
+
 export const routes = [
   {
+    path: '/:catchAll(.*)',
+    redirect: getRedirectPath
+  },
+  {
     path: '/',
-    redirect: isLoggedIn ? '/users/dashboard' : '/courses'
+    redirect: getRedirectPath
   },
   ...categoryRoutes,
   ...authRoutes,

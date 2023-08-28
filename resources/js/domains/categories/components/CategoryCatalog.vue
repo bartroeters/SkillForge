@@ -41,38 +41,42 @@ const categoryDescriptionVisibilityFlags = ref<Record<number, boolean>>(setSente
           {{ getVisibleSentences(category.description, category.id, 3) }}
         </p>
 
-        <button v-if="category.description.length" @click="toggleRows(category.id)" class="toggle-content-button">
-          {{ categoryDescriptionVisibilityFlags[category.id] ? '&uarr; Show less' : 'Read more &darr;' }}
-        </button>
+        <span class="request-category-info">
+          <button v-if="category.description.length" @click="toggleRows(category.id)" class="toggle-content-button">
+            {{ categoryDescriptionVisibilityFlags[category.id] ? '&uarr; Show less' : 'Read more &darr;' }}
+          </button>
 
+          <router-link :to="{name: 'categories.show', params: {id: category.id}}" class="show-category-link">
+            &rarr; Read all
+          </router-link>
+        </span>
 
+        <div v-if="category.courseIds && category.courseIds.length > 0" class="category-courses">
+          <span class="course-label">Courses within this category: </span>
+        
+          <span>
+            <span v-for="(courseId, index) in category.courseIds" :key="index">
+              <span class="hover-menu-wrapper">
+                <router-link
+                  :to="{name: 'courses.show', params: {id: courseId}}"
+                  class="category-course"
+                  >
+                  {{ getCourseValue(courseId)?.title }}
+                </router-link>
 
-
-        <div class="category-courses">
-          <span class="course-label">Disciplines: </span>
-          
-          <span v-for="(courseId, index) in category.courseIds" :key="index">
-            <span class="hover-menu-wrapper">
-              <router-link
-                :to="{name: 'categories.show', params: {id: courseId}}"
-                class="course-category"
-                >
-                {{ getCourseValue(courseId)?.title }}
-              </router-link>
-
-              <hover-menu
-                :text="`&rarr; Learn more about this course!`"
-                :animation-delay=1500
-                :opacity=0.85
-                class="course-link-hover-menu"
-                />
+                <hover-menu
+                  :text="`&rarr; Learn more about this course!`"
+                  :animation-delay=1500
+                  :opacity=0.92
+                  class="course-link-hover-menu"
+                  />
+                </span>
+              <span v-if="index < category.courseIds.length - 1">, </span>
             </span>
-            <span v-if="index < category.courseIds.length - 1">, </span>
           </span>
         </div>
 
-
-
+        <div v-else>No courses within this category yet.</div>
       </div>
     </div>
   </div>

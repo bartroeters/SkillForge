@@ -4,9 +4,8 @@ import Course from './types';
 import OverviewVue from './pages/Overview.vue';
 import ShowVue from './pages/Show.vue';
 import DashboardVue from './pages/Dashboard.vue';
-import { categoryStore } from 'domains/categories';
-import Category from 'domains/categories/types';
 import EditVue from './pages/Edit.vue';
+import { getLoggedInUser } from 'domains/auth';
 
 export const COURSE_DOMAIN_NAME = 'courses';
 
@@ -21,4 +20,9 @@ export const courseRoutes = [
 
 export const getCourseValue = (courseId: number): Course => {
   return courseStore.getters.byId(courseId).value;
+};
+
+export function isUserEnrolledInCourse(courseId: number): boolean {
+  const loggedInUser = getLoggedInUser.value;
+  return loggedInUser ? loggedInUser.courseIds.includes(courseId) : false;
 };

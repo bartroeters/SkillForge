@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { getCurrentRouteId, goToRoute } from 'services/router';
 import { courseStore } from '..';
-import EnrollForm from '../components/EnrollForm.vue';
+import EnrollCourseForm from '../components/EnrollCourseForm.vue';
+import Course from '../types';
+import { isLoggedIn } from 'domains/auth';
 
 const courseId = getCurrentRouteId();
 const course =  courseStore.getters.byId(courseId);
 
-
+const editCourse = async (userToEnroll: Course) => {
+  await courseStore.actions.update(courseId, userToEnroll);
+  goToRoute('users.dashboard');
+}
 </script>
 
 <template>
-  <enroll-form :course="course"/>
+  <enroll-course-form v-if="isLoggedIn" :course="course" @enrollCourse="editCourse"/>
 </template>

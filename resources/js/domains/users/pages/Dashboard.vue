@@ -1,31 +1,31 @@
-  <script setup lang="ts">
-  import { getLoggedInUser, me } from 'domains/auth';
-  import { getUserFullName } from '..';
-  import { courseStore } from 'domains/courses';
-  import { lessonStore } from 'domains/lessons';
+<script setup lang="ts">
+import { getLoggedInUser, loggedInUser, me } from 'domains/auth';
+import { getUserFullName } from '..';
+import { courseStore } from 'domains/courses';
+import { lessonStore } from 'domains/lessons';
+import StudentCourses from '../components/StudentCourses.vue';
+import TutorLessons from '../components/TutorLessons.vue';
+import PageTitle from 'components/PageTitle.vue';
 
-  import StudentCourses from '../components/StudentCourses.vue';
-  import TutorLessons from '../components/TutorLessons.vue';
+courseStore.actions.getAll();
+lessonStore.actions.getAll();
 
-  courseStore.actions.getAll();
-  lessonStore.actions.getAll();
+me();
 
-  me();
-  </script>
+const user = getLoggedInUser.value;
+const welcomeMessage = user ? `Welcome to your Dashboard, ${getUserFullName(user)}!` : '';
+</script>
 
-  <template>
-    <div class="dashboard-container" v-if="getLoggedInUser">
-      <h1>
-        Welcome to your Dashboard,
-        {{ getUserFullName(getLoggedInUser) }}!
-      </h1>
+<template>
+  <page-title v-if="user" :text="welcomeMessage" />
 
-      <student-courses />
+  <div class="dashboard-container">
+    <student-courses />
 
-      <tutor-lessons />
-    </div>
-  </template>
+    <tutor-lessons />
+  </div>
+</template>
 
-  <style scoped>
-  @import '../../../../css/user-dashboard.css';
-  </style>
+<style scoped>
+@import '../../../../css/user-dashboard.css';
+</style>

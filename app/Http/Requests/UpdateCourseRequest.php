@@ -22,7 +22,7 @@ class UpdateCourseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'userIds' => $this->users->pluck('id')
         ];
     }
 }

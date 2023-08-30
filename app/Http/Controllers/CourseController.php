@@ -54,7 +54,8 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $course->update($request->validated());
+        return new CourseResource($course);
     }
 
     /**

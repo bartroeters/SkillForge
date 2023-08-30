@@ -14,8 +14,8 @@ export const userRoutes = [
   createDashboardRoute(USER_DOMAIN_NAME, createDashboardRouteWithLazyLoad)
 ];
 
-export const getUserFullName = (user: User) =>  `${user.firstName} ${user.lastName}`;
-
 export const userCourses = computed(() => getUserCourses());
 
 export const lessonsByTutor = computed(() => getLessonsByTutor());
+
+export const getUserFullName = (user: User) =>  `${user.firstName} ${user.lastName}`;

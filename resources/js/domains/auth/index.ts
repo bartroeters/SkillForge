@@ -34,6 +34,13 @@ export const authRoutes = [
   component: Register,
   meta: {auth: false, canSeeWhenLoggedIn: false},
   },
+  {
+    path: '/enroll/:id',
+    name: 'enroll',
+    component: Register,
+    meta: { auth: false, canSeeWhenLoggedIn: false },
+    props: (route: { params: { id: number; }; query: { sourceRoute: string; }; }) => ({ id: route.params.id, sourceRoute: route.query.sourceRoute }),
+  },
 ];
 
 export const loggedInUser = ref<User | null>(null);

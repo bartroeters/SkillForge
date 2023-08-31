@@ -52,6 +52,8 @@
 .course-description {
   font-size: 16px;
   line-height: 1.5;
+  text-align: justify;
+  padding: 0 8px 0 2px;
   color: #333;
 }
 
@@ -89,9 +91,7 @@
 .category-label {
   color: #555;
   font-size: 15px;
-  margin-right: 5px;
-  margin-top: 12px;
-  margin-bottom: 3.5px;
+  margin: 12px 5px 3.5px 0;
 }
 
 .course-category {

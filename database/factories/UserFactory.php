@@ -18,10 +18,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $imageFiles = glob('public/storage/profile-pictures/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
         $timestamp = fake()->dateTimeBetween('-2 years', '-20 minutes');
+
         return [
             'firstName' => fake()->name(),
             'lastName' => fake()->name(),
+            'profilePicture' => '/storage/profile-pictures/' . basename($imageFiles[array_rand($imageFiles)]),
             'email' => fake()->unique()->safeEmail(),
             'emailVerifiedAt' => $timestamp,
             'password' => Str::random(7, 14),

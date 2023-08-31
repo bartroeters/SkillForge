@@ -33,7 +33,7 @@ class CourseFactory extends Factory
         
         return [
             'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 3), true))),
-            'description' => implode("\n\n", fake()->paragraphs(rand(3, 7))),
+            'description' => implode("\n\n", fake()->paragraphs(rand(7, 9))),
             // 'thumbnail' => $thumbnailPath,
             'thumbnail' => '/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
             'price' => fake()->numberBetween(70, 3000)

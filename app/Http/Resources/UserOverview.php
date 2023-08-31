@@ -20,6 +20,7 @@ class UserOverview extends JsonResource
             'id' => $this->id,
             'firstName' => $this->first_name,
             'lastName' => $this->last_name,
+            'profilePicture' => $this->profile_picture,
             'email' => $this->email,
             'isAdmin' => $this->is_admin,
             'inviteToken' => $this->inviteToken,

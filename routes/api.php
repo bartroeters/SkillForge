@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AuthController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfilePictureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('me', [AuthController::class, 'me']);
 });
+
+Route::post('/upload-profile-picture', [ProfilePictureController::class, 'uploadProfilePicture'])->name('upload.profile.picture');

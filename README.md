@@ -84,6 +84,6 @@ Problems that persist
 Small issues
 * Toast messages do not look good. 
 
-8/30/23:
-* Beautify Course Page: fix arrows.
+9/1/23:
+* Beautify Course Page: why am I not getting profile pictures??? -> review section & tutor section.
 * Make Show Category Page.

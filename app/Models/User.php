@@ -25,6 +25,7 @@ class User extends BaseModel implements JWTSubject, AuthenticatableContract, Aut
     protected $fillable = [
         'firstName',
         'lastName',
+        'profilePicture',
         'email',
         'password',
         'isAdmin'

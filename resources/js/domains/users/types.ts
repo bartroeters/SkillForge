@@ -2,6 +2,7 @@ export interface User {
   id: number
   firstName: string
   lastName: string
+  profilePicture: string;
   email: string
   isAdmin: boolean
   createdAt: string

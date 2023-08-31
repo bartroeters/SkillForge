@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder {
     public function run() {
+        $imageFiles = glob('public/storage/profile-pictures/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+        
         User::create([
             'first_name' => 'Henk',
             'last_name' => 'Steen',
+            'profile_picture' => '/storage/profile-pictures/' . basename($imageFiles[array_rand($imageFiles)]),
             'email' => 'henksteen@mail.com',
             'password' => 'bamischijf',
             'is_admin' => true,

@@ -1,31 +1,37 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { getCurrentRouteId, getCurrentRouteName } from 'services/router';
-import { courseStore, isUserEnrolledInCourse } from '..';
+import { courseStore, isUserEnrolledInCourse, getCourseTutors } from '..';
 import { getLoggedInUser, isLoggedIn } from 'domains/auth';
 import PageTitle from 'components/PageTitle.vue';
 import { getUserFullName, userStore } from 'domains/users';
+import { getReviewValue, reviewStore } from 'domains/reviews';
+import { lessonStore } from 'domains/lessons';
 
 const courseId = getCurrentRouteId();
 const course = courseStore.getters.byId(courseId);
-const user = userStore.getters.byId(1);
-
-console.log(user);
 
 userStore.actions.getAll();
 courseStore.actions.getAll();
+reviewStore.actions.getAll();
+lessonStore.actions.getAll();
 
 const courseTitle = computed(() => `${course.value?.title}`);
-
-console.log(getLoggedInUser.value?.profilePicture);
-console.log(getLoggedInUser)
 </script>
 
 <template>
   <page-title :text="courseTitle"/>
 
   <div class="content-container">
+    <!-- Course container -->
     <div class="course-container">
+      <!-- Title and description -->
+      <div class="title-description-wrapper">
+        <h3 class="">About {{ course?.title }}</h3>
+        <p class="course-description">{{ course?.description }}</p>
+      </div>
+
+      <!-- Thumbnail and side menu -->
       <div class="thumbnail-side-menu-wrapper">
         <img :src="course?.thumbnail" :alt="course?.title">
 
@@ -49,44 +55,82 @@ console.log(getLoggedInUser)
             Go to dashboard
           </router-link>
 
-          <router-link
+          <a
             v-if="isUserEnrolledInCourse(courseId)"
-            :to="{name: 'courses.dashboard'}"
+            href="#write-review"
             class="review-course-link"
             >
             <span class="hidden-arrow">&rarr;</span>
             Write a review
-          </router-link>
+        </a>
         </span>
-      </div>
-
-      <div class="title-description-wrapper">
-        <h3 class="about-course">About {{ course?.title }}</h3>
-        <p class="course-description">{{ course?.description }}</p>
       </div>
     </div>
 
-    <div class="tutor-container" v-if="isLoggedIn && getLoggedInUser">
-      <img :src="getLoggedInUser?.profilePicture" :alt="getUserFullName(getLoggedInUser)">
-      <img :src="'/storage/profile-pictures/' + getLoggedInUser?.profilePicture" :alt="getUserFullName(getLoggedInUser)">
-      <img :src="'/storage/profile-pictures/3023969.jpg'" :alt="`retrieving profile photo directly from the storage`" height="150" width="150">
+    <!-- course info -->
+    <div class="course-information">
+      <h3>Programme</h3>
+      <div>{{ course?.programme }}</div>
+    </div>
+
+    <div class="course-information">
+      <h3>After your studies</h3>
+      <div>{{ course?.prospects }}</div>
+    </div>
+
+    <!-- Tutors Container -->
+    <div class="tutors-container">
+      <h3>Our dedicated teachers</h3>
+
+      <div class="tutor-grid">
+        <div v-for="(tutor, index) in getCourseTutors(courseId)" :key="index" class="tutor-item">
+          <img :src="tutor.profilePicture" :alt="getUserFullName(tutor)" height="135" width="108">
+          <p>{{ getUserFullName(tutor) }}</p>
+          <p>{{ tutor.email }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews container -->
+    <div class="reviews-container">
+      <h3>All Reviews</h3>
+
+      <div v-for="(review, index) in getReviewValue(courseId)" :key="index">
+        <p>{{ review.comment }}</p>
+        <p>{{ review.rating }}</p>
+      </div>
+    </div>
+
+    <div id="write-review">
+      form to write review
     </div>
   </div>
 </template>
 
 <style scoped>
+* {
+  color: #555;
+}
+
+h3 {
+  padding-left: 50px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 24px;
+  color: #2d2f31;
+  letter-spacing: .5px;
+}
+
 .content-container {
   display: block;
   border: 1px solid #dddddd;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   padding: 0 0 20px 20px;
-
 }
 
-.course-container,
-.tutor-container {
+.course-container {
   display: flex;
+  flex-direction: row-reverse;
 }
 
 .thumbnail-side-menu-wrapper {
@@ -125,18 +169,28 @@ img {
   margin-right: 20px;
 }
 
-.about-course {
-  padding-left: 50px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 24px;
-  letter-spacing: .5px;
-}
-
 .course-description {
   font-size: 17px;
   margin: 20px;
   line-height: 1.5;
-  color: #555;
   text-align: justify;
+}
+
+.course-information {
+  font-size: 17px;
+  margin: 20px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.tutor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  text-align: end;
+}
+
+.tutor-grid p {
+  margin: 2px;
 }
 </style>

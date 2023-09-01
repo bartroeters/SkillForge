@@ -19,6 +19,7 @@ class CourseFactory extends Factory
     public function definition()
     {
         $imageFiles = glob('public/storage/images/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+        $alinea = implode("\n\n", fake()->paragraphs(rand(7, 9)));
 
         /**
          * Generate thumbnail if there are no images in `storage/app/public/images`.
@@ -33,9 +34,11 @@ class CourseFactory extends Factory
         
         return [
             'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 3), true))),
-            'description' => implode("\n\n", fake()->paragraphs(rand(7, 9))),
+            'description' => $alinea,
             // 'thumbnail' => $thumbnailPath,
             'thumbnail' => '/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
+            'programme' => $alinea,
+            'prospects' => $alinea,
             'price' => fake()->numberBetween(70, 3000)
         ];
     }

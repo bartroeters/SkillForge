@@ -5,6 +5,8 @@ export const REVIEW_DOMAIN_NAME = 'reviews';
 
 export const reviewStore = storeModuleFactory<Review>(REVIEW_DOMAIN_NAME);
 
-export const getReviewValue = (reviewId: number): Review => {
-  return reviewStore.getters.byId(reviewId).value;
+export const getReviewValue = (courseId: number): Review[] => {
+  const reviews = reviewStore.getters.all.value;
+  return reviews.filter((review: Review) => review.courseId === courseId)
+                  .map((review: Review) => Object.freeze(review));
 };

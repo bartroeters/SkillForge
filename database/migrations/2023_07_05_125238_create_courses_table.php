@@ -18,6 +18,8 @@ class CreateCoursesTable extends Migration
             $table->string('title')->unique();
             $table->text('description');
             $table->string('thumbnail')->nullable();
+            $table->text('programme');
+            $table->text('prospects');
             $table->unsignedDecimal('price', 10, 0);
             $table->timestamps();
         });

@@ -22,8 +22,8 @@ class UserFactory extends Factory
         $timestamp = fake()->dateTimeBetween('-2 years', '-20 minutes');
 
         return [
-            'firstName' => fake()->name(),
-            'lastName' => fake()->name(),
+            'firstName' => fake()->firstName(),
+            'lastName' => fake()->lastName(),
             'profilePicture' => '/storage/profile-pictures/' . basename($imageFiles[array_rand($imageFiles)]),
             'email' => fake()->unique()->safeEmail(),
             'emailVerifiedAt' => $timestamp,

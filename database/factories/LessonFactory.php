@@ -33,8 +33,9 @@ class LessonFactory extends Factory
 
         return [
             'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 3), true))),
-            'tutor_id' => $tutor->id,
+            'tutorId' => $tutor->id,
             'description' => implode("\n\n", fake()->paragraphs(rand(1, 2))),
+            'textContent' => implode("\n\n", fake()->paragraphs(rand(10, 15))),
             // 'videoContent' => $thumbnailPath,
             'videoContent' => '/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
             'description' => implode("\n\n", fake()->paragraphs(rand(3, 7))),

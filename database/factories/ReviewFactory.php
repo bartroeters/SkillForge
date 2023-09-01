@@ -21,8 +21,8 @@ class ReviewFactory extends Factory
         return [
             'userId' => $user->id,
             'courseId' => $course->id,
-            'rating' => fake()->numberBetween(1, 5),
-            'comment' => fake()->paragraph(),
+            'rating' => fake()->numberBetween(3, 5),
+            'comment' => implode("\n\n", fake()->paragraphs(rand(1, 3))),
         ];
     }
 }

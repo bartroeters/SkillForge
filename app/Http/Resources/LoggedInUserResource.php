@@ -29,6 +29,7 @@ class LoggedInUserResource extends JsonResource
             'firstName' => $this->first_name,
             'lastName' => $this->last_name,
             'email' => $this->email,
+            'profilePicture' => $this->profilePicture,
             'isAdmin' => $this->is_admin,
             'courseIds' => $this->courses->pluck('id')
         ];

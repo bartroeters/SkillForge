@@ -117,6 +117,8 @@ const reviewVisibilityFlags = computed(() => setItemVisibility.value);
         {{ reviewVisibilityFlags ? 'Show less &uarr;' : 'Read all reviews &darr;' }}
       </button>
     </div>
+
+    <div>gfdsfsd</div>
   </div>
 </template>
 

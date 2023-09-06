@@ -11,7 +11,7 @@ import ResetPassword from './pages/ResetPassword.vue';
 
 export const authRoutes = [
   {
-  path: '/',
+  path: '/login',
   name: 'login',
   component: Login,
   meta: {auth: false, canSeeWhenLoggedIn: false},

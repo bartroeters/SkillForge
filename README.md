@@ -77,13 +77,11 @@ The function takes three parameters:
 The purpose of `resources\js\helpers\get-formatted-content.ts` is twofold. Firstly it is to allow looping over foreign id's of Objects in many to many relationships easily. Secondly it is to provide functionality to hide some of the content within the loop.
 
 The code works properly and is concise, however the loop only works for many-to-many relationships. Looping over any other property of an Object is not possible with the code as it is currently written.
-## ???
-Problems that persist
-* Unencrypted password show up in payload. Problem with password hashing.
 
 Small issues
-* Toast messages do not look good. 
+* Toast messages do not look good.
 
-9/4/23:
+9/5/23:
 * Beautify Course Page.
+* `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Make Show Category Page.

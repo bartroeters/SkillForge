@@ -23,6 +23,7 @@ class ReviewFactory extends Factory
             'courseId' => $course->id,
             'rating' => fake()->numberBetween(3, 5),
             'comment' => implode("\n\n", fake()->paragraphs(rand(1, 3))),
+            'createdAt' => $timestamp
         ];
     }
 }

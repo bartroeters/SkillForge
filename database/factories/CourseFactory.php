@@ -20,6 +20,7 @@ class CourseFactory extends Factory
     {
         $imageFiles = glob('public/storage/images/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
         $alinea = implode("\n\n", fake()->paragraphs(rand(7, 9)));
+        $timestamp = fake()->dateTimeBetween('-3 years', '1 year');
 
         /**
          * Generate thumbnail if there are no images in `storage/app/public/images`.
@@ -39,7 +40,8 @@ class CourseFactory extends Factory
             'thumbnail' => '/storage/images/' . basename($imageFiles[array_rand($imageFiles)]),
             'programme' => $alinea,
             'prospects' => $alinea,
-            'price' => fake()->numberBetween(70, 3000)
+            'price' => fake()->numberBetween(70, 3000),
+            'createdAt' => $timestamp
         ];
     }
 }

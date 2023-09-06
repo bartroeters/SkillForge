@@ -9,9 +9,9 @@
     "eslint.nodePath": "./node_modules",
     "eslint.alwaysShowStatus": true,
     "eslint.validate": ["vue"],
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
+    // "editor.codeActionsOnSave": {
+    //     "source.fixAll.eslint": true
+    // },
     // Vue settings
     "volar.inlayHints.eventArgumentInInlineHandlers": false,
     "volar.codeLens.pugTools": false,

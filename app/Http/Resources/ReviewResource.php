@@ -22,7 +22,8 @@ class ReviewResource extends JsonResource
             'courseId' => $this->courseId,
             'userId' => $this->userId,
             'comment' => $this->comment,
-            'rating' => $this->rating
+            'rating' => $this->rating,
+            'createdAt' => $this->createdAt
         ];
     }
 }

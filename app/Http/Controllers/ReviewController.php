@@ -30,7 +30,11 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $review = Review::create($validated);
+
+        return new ReviewResource($review);
     }
 
     /**

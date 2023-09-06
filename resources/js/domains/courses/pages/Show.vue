@@ -2,11 +2,14 @@
 import { computed } from 'vue';
 import { getCurrentRouteId, getCurrentRouteName } from 'services/router';
 import { courseStore, isUserEnrolledInCourse, getCourseTutors } from '..';
-import { getLoggedInUser, isLoggedIn } from 'domains/auth';
+import { isLoggedIn } from 'domains/auth';
 import PageTitle from 'components/PageTitle.vue';
 import { getUserFullName, userStore } from 'domains/users';
 import { getReviewValue, reviewStore } from 'domains/reviews';
 import { lessonStore } from 'domains/lessons';
+import WriteReviewForm from '../components/WriteReviewForm.vue';
+import { getVisibleItems, setItemVisibility, toggleContent } from 'helpers/get-formatted-content';
+import { formatDate } from 'helpers/date-time-formatter';
 
 const courseId = getCurrentRouteId();
 const course = courseStore.getters.byId(courseId);
@@ -17,6 +20,8 @@ reviewStore.actions.getAll();
 lessonStore.actions.getAll();
 
 const courseTitle = computed(() => `${course.value?.title}`);
+
+const reviewVisibilityFlags = computed(() => setItemVisibility.value);
 </script>
 
 <template>
@@ -57,12 +62,12 @@ const courseTitle = computed(() => `${course.value?.title}`);
 
           <a
             v-if="isUserEnrolledInCourse(courseId)"
-            href="#write-review"
-            class="review-course-link"
+            href="#review"
+            class="write-review-link"
             >
             <span class="hidden-arrow">&rarr;</span>
             Write a review
-        </a>
+          </a>
         </span>
       </div>
     </div>
@@ -93,104 +98,28 @@ const courseTitle = computed(() => `${course.value?.title}`);
 
     <!-- Reviews container -->
     <div class="reviews-container">
-      <h3>All Reviews</h3>
+      <h3>Reviews</h3>
 
-      <div v-for="(review, index) in getReviewValue(courseId)" :key="index">
-        <p>{{ review.comment }}</p>
+      <write-review-form v-if="isUserEnrolledInCourse(courseId)">
+        form to write review
+      </write-review-form>
+
+      <div v-for="(review, index) in getVisibleItems(getReviewValue(courseId), 2)" :key="index">
         <p>{{ review.rating }}</p>
+        <p>{{ review.comment }}</p>
+        <p>
+          <div>Review by {{ review.userId }}</div>
+          <div>{{ formatDate(review.createdAt) }}</div>
+        </p>
       </div>
-    </div>
 
-    <div id="write-review">
-      form to write review
+      <button @click="toggleContent()" class="toggle-content-button">
+        {{ reviewVisibilityFlags ? 'Show less &uarr;' : 'Read all reviews &darr;' }}
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped>
-* {
-  color: #555;
-}
-
-h3 {
-  padding-left: 50px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 24px;
-  color: #2d2f31;
-  letter-spacing: .5px;
-}
-
-.content-container {
-  display: block;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  padding: 0 0 20px 20px;
-}
-
-.course-container {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.thumbnail-side-menu-wrapper {
-  flex: 0 0 35%;
-}
-
-img {
-  margin: 33px 0 25px 0;
-  max-width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  border-radius: 10%;
-}
-
-.side-menu > a {
-  display: flex;
-  color: #007bff;
-  text-decoration: none;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 15px;
-  line-height: 200%;
-  letter-spacing: .1px;
-}
-
-.side-menu:hover {
-  color: #0056b3;
-  letter-spacing: .2px;
-}
-
-.hidden-arrow {
-  display: none;
-}
-
-.enroll-course-link:hover .hidden-arrow,
-.review-course-link:hover .hidden-arrow {
-  display: inline;
-  margin-right: 20px;
-}
-
-.course-description {
-  font-size: 17px;
-  margin: 20px;
-  line-height: 1.5;
-  text-align: justify;
-}
-
-.course-information {
-  font-size: 17px;
-  margin: 20px;
-  line-height: 1.5;
-  text-align: justify;
-}
-
-.tutor-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 20px;
-  text-align: end;
-}
-
-.tutor-grid p {
-  margin: 2px;
-}
+@import '../../../../css/show-page.css';
 </style>

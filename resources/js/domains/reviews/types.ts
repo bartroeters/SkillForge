@@ -1,7 +1,8 @@
-export default interface Review {
+export interface Review {
   id: number;
   userId: number;
   courseId: number;
-  rating: string;
+  rating: number;
   comment: string;
+  createdAt: string;
 }

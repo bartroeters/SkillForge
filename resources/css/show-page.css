@@ -1,0 +1,101 @@
+* {
+  color: #555;
+}
+
+h3 {
+  padding-left: 50px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 24px;
+  color: #2d2f31;
+  letter-spacing: .5px;
+}
+
+.content-container {
+  display: block;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  padding: 0 0 20px 20px;
+}
+
+.course-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.thumbnail-side-menu-wrapper {
+  flex: 0 0 35%;
+}
+
+img {
+  margin: 33px 0 25px 0;
+  max-width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  border-radius: 10%;
+}
+
+.side-menu > a {
+  display: flex;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  line-height: 200%;
+  letter-spacing: .1px;
+}
+
+.side-menu:hover {
+  color: #0056b3;
+  letter-spacing: .2px;
+}
+
+.hidden-arrow {
+  display: none;
+}
+
+.enroll-course-link:hover .hidden-arrow,
+.review-course-link:hover .hidden-arrow,
+.write-review-link:hover .hidden-arrow {
+  display: inline;
+  margin-right: 20px;
+}
+
+.course-description {
+  font-size: 17px;
+  margin: 20px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.course-information {
+  font-size: 17px;
+  margin: 20px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.tutor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  text-align: start;
+}
+
+.tutor-grid p {
+  margin: 2px;
+}
+
+.toggle-content-button {
+  display: block;
+  margin: 25px 0 30px 0;
+  font-size: 12.7px;
+  color: #007bff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-content-button:hover {
+  text-decoration: underline;
+}

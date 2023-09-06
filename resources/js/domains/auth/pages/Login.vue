@@ -3,6 +3,7 @@ import {goToDashboardPage} from 'services/router';
 import {login} from '../';
 import {ref} from 'vue';
 import { USER_DOMAIN_NAME } from '../../users';
+import PageTitle from 'components/PageTitle.vue';
 
 const credentials = ref({});
 
@@ -13,6 +14,8 @@ const submit = async () => {
 </script>
 
 <template>
+  <page-title text="Login"/>
+  
   <div class="login-container">
     <form class="auth-form" @submit.prevent="submit">
       <h1>Login</h1>

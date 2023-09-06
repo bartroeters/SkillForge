@@ -10,6 +10,7 @@ const userToRegister = ref<UserToRegister>({
 id: 0,
 firstName: '',
 lastName: '',
+profilePicture: '',
 email: '',
 isAdmin: false,
 password: '',

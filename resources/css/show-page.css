@@ -99,3 +99,64 @@ img {
 .toggle-content-button:hover {
   text-decoration: underline;
 }
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 0 20px 0 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.review-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.rating-stars {
+  font-size: 24px;
+  color: #ffcc00;
+  margin-bottom: 15px;
+}
+
+.review-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.review-submit-button {
+  background-color: #007bff;
+  color: #fff;
+  width: fit-content;
+  border: none;
+  border-radius: 4px;
+  margin: 10px 0 0 0;
+  padding: 8px 16px;
+  font-size: 15.5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  letter-spacing: 1.9px;
+  opacity: .9;
+}
+
+.review-submit-button:hover {
+  background-color: #0056b3;
+}
+
+.star {
+  font-size: 24px;
+  color: #ddd;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.filled-star {
+  color: #ffcc00;
+}

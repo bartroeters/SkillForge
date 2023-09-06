@@ -81,12 +81,7 @@ The code works properly and is concise, however the loop only works for many-to-
 Small issues
 * Toast messages do not look good.
 
-9/5/23:
-* BELANGRIJK !!! => !!! => Kan niet uploaden naar Git. Vraag Jasper om hulp.
-* Beautify Course Page.
-* `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
-* Make Show Category Page.
-
+Git commands
 * open gitbash in windows of in vscode terminal
 * ga evt. naar je project-map als je daar nog niet in zit
 * "git status" => controleer   status
@@ -102,3 +97,11 @@ Small issues
 * "git branch -v" => list alle lokale branches" 
 * "git branch -r" => list alle remote branches"
 * "git log --graph" => visuele representatie van git log met branches"
+
+9/7/23:
+* Keep working on difficult component.
+* CSS user dashboard got wrecked.
+* Beautify Course Page.
+* `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
+* Als je  intypt [voorbeeld] `http://127.0.0.1:8000/courses/2#review` wordt je niet geleid naar de `href=#review`.
+* Make Show Category Page.

@@ -5,6 +5,7 @@ import { UserToRegister } from 'domains/users/types';
 import { login } from '..';
 import { goToRoute } from 'services/router';
 import { useRoute } from 'vue-router';
+import PageTitle from 'components/PageTitle.vue';
 
 const userToRegister = ref<UserToRegister>({
 id: 0,
@@ -39,6 +40,8 @@ const continueEnrollment = async () => {
 </script>
 
 <template>
+<page-title text="Register account"/>
+
   <div class="login-container">
     <form class="auth-form" @submit.prevent="redirectedFromCourseEnrollment ? continueEnrollment : registerUser">
       <div v-if="redirectedFromCourseEnrollment">

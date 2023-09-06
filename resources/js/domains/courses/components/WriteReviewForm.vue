@@ -17,16 +17,29 @@ const addReview = async () => {
 const reviewData = ref({
   ...props.review,
   userId: getLoggedInUser.value?.id,
-  courseId: Number(useRoute().params.id),
-  rating: 4
+  courseId: Number(useRoute().params.id)
 } as Review);
+
+const setRating = (rating: number) => {
+  reviewData.value.rating = rating;
+};
 </script>
 
 <template>
-  <form @submit.prevent="addReview">
-    <label for="comment">Write a review:</label>
+  <form @submit.prevent="addReview" class="review-form">
+    <label for="comment" class="review-label">Write a review:</label>
 
-    <div>★★★★★</div>
+    <!-- <div class="rating-stars">★★★★★</div> -->
+
+    <div class="rating-stars">
+      <template v-for="star in 5" :key="star">
+        <span
+          class="star"
+          :class="{ 'filled-star': star <= reviewData.rating }"
+          @click="setRating(star)"
+        >★</span>
+      </template>
+    </div>
 
     <textarea
       name="comment"
@@ -34,8 +47,14 @@ const reviewData = ref({
       @input="resizeTextarea"
       v-model="reviewData.comment"
       style="width: 600px; resize: vertical;"
+      class="review-textarea"
+      placeholder="Share your thoughts..."
     ></textarea>
 
-    <button>Submit</button>
+    <button class="review-submit-button">Submit</button>
   </form>
 </template>
+
+<style>
+@import '../../../../css/show-page.css';
+</style>

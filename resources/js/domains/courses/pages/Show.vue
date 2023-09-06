@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { getCurrentRouteId, getCurrentRouteName } from 'services/router';
 import { courseStore, isUserEnrolledInCourse, getCourseTutors } from '..';
 import { isLoggedIn } from 'domains/auth';
 import PageTitle from 'components/PageTitle.vue';
 import { getUserFullName, userStore } from 'domains/users';
-import { getReviewValue, reviewStore } from 'domains/reviews';
+import { reviewStore } from 'domains/reviews';
 import { lessonStore } from 'domains/lessons';
 import WriteReviewForm from '../components/WriteReviewForm.vue';
-import { getVisibleItems, setItemVisibility, toggleContent } from 'helpers/get-formatted-content';
+import { toggleContent, initializeVisibilityFlags, initializeToggle, getVisibleItems } from 'helpers/get-formatted-content';
 import { formatDate } from 'helpers/date-time-formatter';
+import { getSortedReviewValues } from 'domains/reviews';
 
 const courseId = getCurrentRouteId();
 const course = courseStore.getters.byId(courseId);
@@ -21,7 +22,8 @@ lessonStore.actions.getAll();
 
 const courseTitle = computed(() => `${course.value?.title}`);
 
-const reviewVisibilityFlags = computed(() => setItemVisibility.value);
+initializeToggle(['tutors', 'reviews']);
+const visibilityFlags = initializeVisibilityFlags(['tutors', 'reviews']);
 </script>
 
 <template>
@@ -88,23 +90,25 @@ const reviewVisibilityFlags = computed(() => setItemVisibility.value);
       <h3>Our dedicated teachers</h3>
 
       <div class="tutor-grid">
-        <div v-for="(tutor, index) in getCourseTutors(courseId)" :key="index" class="tutor-item">
+        <div v-for="(tutor, index) in getVisibleItems('tutors', getCourseTutors(courseId), 3)" :key="index">
           <img :src="tutor.profilePicture" :alt="getUserFullName(tutor)" height="135" width="108">
           <p>{{ getUserFullName(tutor) }}</p>
           <p>{{ tutor.email }}</p>
         </div>
       </div>
+
+      <button @click="toggleContent('tutors')" class="toggle-content-button">
+        {{ visibilityFlags.tutors.value ? 'Show less &uarr;' : 'View all teachers &darr;' }}
+      </button>
     </div>
 
     <!-- Reviews container -->
     <div class="reviews-container">
       <h3>Reviews</h3>
 
-      <write-review-form v-if="isUserEnrolledInCourse(courseId)">
-        form to write review
-      </write-review-form>
+      <write-review-form v-if="isUserEnrolledInCourse(courseId)" />
 
-      <div v-for="(review, index) in getVisibleItems(getReviewValue(courseId), 2)" :key="index">
+      <div v-for="(review, index) in getVisibleItems('reviews', getSortedReviewValues(courseId), 2)" :key="index">
         <p>{{ review.rating }}</p>
         <p>{{ review.comment }}</p>
         <p>
@@ -113,12 +117,10 @@ const reviewVisibilityFlags = computed(() => setItemVisibility.value);
         </p>
       </div>
 
-      <button @click="toggleContent()" class="toggle-content-button">
-        {{ reviewVisibilityFlags ? 'Show less &uarr;' : 'Read all reviews &darr;' }}
+      <button @click="toggleContent('reviews')" class="toggle-content-button">
+        {{ visibilityFlags.reviews.value ? 'Show less &uarr;' : 'Read all reviews &darr;' }}
       </button>
     </div>
-
-    <div>gfdsfsd</div>
   </div>
 </template>
 

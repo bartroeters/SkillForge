@@ -24,7 +24,7 @@ courseStore.actions.getAll();
         </router-link>
           
         <router-link
-          v-for="(lessonId, index) in getVisibleItemIds(course, course.lessonIds, 3)"
+          v-for="(lessonId, index) in getVisibleItemIds('courses', course, course.lessonIds, 3)"
           :key="index"
           :to="{ name: 'lessons.show', params: { id: lessonId } }"
           class="show-lesson-link"

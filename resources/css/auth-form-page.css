@@ -3,8 +3,12 @@
 }
 
 .auth-form {
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 40px;
+  margin: 0 60px 0 60px;
+  max-width: 300px;
   background-color: #ffffff;
   border: 1px solid #dddddd;
   border-radius: 4px;

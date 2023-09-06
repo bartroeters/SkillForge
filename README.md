@@ -82,6 +82,7 @@ Small issues
 * Toast messages do not look good.
 
 9/5/23:
+* BELANGRIJK !!! => !!! => Kan niet uploaden naar Git. Vraag Jasper om hulp.
 * Beautify Course Page.
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Make Show Category Page.

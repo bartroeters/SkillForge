@@ -86,3 +86,19 @@ Small issues
 * Beautify Course Page.
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Make Show Category Page.
+
+* open gitbash in windows of in vscode terminal
+* ga evt. naar je project-map als je daar nog niet in zit
+* "git status" => controleer   status
+* "git add ." => stage alle bestanden / changes
+* "git add <filename>" => stage specifiek 1 bestand
+* "git commit -m 'commit msg'" => commit wat je gestaged hebt
+* "git push" => stuur alle changes naar je remote repo
+* "git pull" => haal alle changes van remote op naar je local repo
+
+* "git checkout -b 'new_feature'" => maak nieuwe feature branch
+* "git checkout master" => schakel over naar master branch
+* "git remote -v" => list de remote(s)
+* "git branch -v" => list alle lokale branches" 
+* "git branch -r" => list alle remote branches"
+* "git log --graph" => visuele representatie van git log met branches"

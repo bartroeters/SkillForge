@@ -1,11 +1,11 @@
 import { ref, computed, ComputedRef } from 'vue';
 
-interface visibilityObject {
+interface VisibilityObject {
   [key: string]: boolean
 }
 
 // Stores visibility state of items.
-export const setItemVisibility = ref<visibilityObject>({});
+export const setItemVisibility = ref<VisibilityObject>({});
 // Stores visibility state of foreign IDs associated with an object.
 export const setForeignIdVisibility = ref<Record<number, boolean>>({});
 // Stores visibility state of text rows associated with an object.
@@ -16,10 +16,10 @@ export const setSentenceVisibility = ref<Record<number, boolean>>({});
  * @param name - Name attributed to the targeted content.
  * @param id - Optional ID of the owner object to toggle visibility for its associated foreign IDs. If undefined, toggles item visibility.
  */
-export const toggleContent = (name: string, id?: number): void => {
+export const toggleContent = (name?: keyof VisibilityObject, id?: number): void => {
   if (id !== undefined) {
     setForeignIdVisibility.value[id] = !setForeignIdVisibility.value[id];
-  } else {
+  } else if (name) {
     setItemVisibility.value[name] = !setItemVisibility.value[name];
   }
 }
@@ -49,15 +49,19 @@ export const initializeToggle = (names: string[]) => {
  * @param names - An array of item names to create computed flags for.
  * @returns An object with computed visibility flags for each item.
  */
-export const initializeVisibilityFlags = (names: string[]): Record<string, ComputedRef<boolean>> => {
+export const initializeVisibilityFlags = (
+  names: string[],
+  VisibilityObject: Record<string, boolean> = setItemVisibility.value
+): Record<string, ComputedRef<boolean>> => {
   const visibilityFlags: Record<string, ComputedRef<boolean>> = {};
 
   names.forEach((name) => {
-    visibilityFlags[name] = computed(() => setItemVisibility.value[name]);
+    visibilityFlags[name] = computed(() => VisibilityObject[name]);
   });
 
   return visibilityFlags;
 };
+
 
 /**
  * Get an array of visible items based on their visibility state.
@@ -66,7 +70,7 @@ export const initializeVisibilityFlags = (names: string[]): Record<string, Compu
  * @returns Array of visible items.
  */
 export function getVisibleItems<T>(
-  name: keyof visibilityObject,
+  name: keyof VisibilityObject,
   items: Record<number, T>,
   numOfVisibleItems: number
 ): T[] {
@@ -82,7 +86,6 @@ export function getVisibleItems<T>(
  * @returns Array of visible foreign item IDs.
  */
 export function getVisibleItemIds<T extends { id: number }>(
-  name: keyof visibilityObject,
   ownerObject: T,
   foreignIds: number[],
   numOfVisibleItems: number

@@ -30,11 +30,9 @@ export const getCourseTutors = (courseId: number): User[] => {
   return uniqueTutorIds.map(tutorId => userStore.getters.byId(tutorId).value);
 };
 
-export const isUserEnrolledInCourse = (courseId: number): ComputedRef<boolean> => {
-  return computed(() => {
-    const loggedInUser = getLoggedInUser.value;
-    return loggedInUser ? loggedInUser.courseIds.includes(courseId) : false;
-  });
+export function isUserEnrolledInCourse(courseId: number): boolean {
+  const loggedInUser = getLoggedInUser.value;
+  return loggedInUser ? loggedInUser.courseIds.includes(courseId) : false;
 };
 
 export const getCourseValue = (courseId: number): Course => {

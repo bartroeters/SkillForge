@@ -8,7 +8,7 @@ import { getUserFullName, userStore } from 'domains/users';
 import { reviewStore } from 'domains/reviews';
 import { lessonStore } from 'domains/lessons';
 import WriteReviewForm from '../components/WriteReviewForm.vue';
-import { toggleContent, initializeVisibilityFlags, initializeToggle, getVisibleItems } from 'helpers/get-formatted-content';
+import { toggleContent, initializeVisibilityFlags, initializeToggle, getVisibleItems, setItemVisibility } from 'helpers/get-formatted-content';
 import { formatDate } from 'helpers/date-time-formatter';
 import { getSortedReviewValues } from 'domains/reviews';
 

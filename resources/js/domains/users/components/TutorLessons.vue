@@ -4,8 +4,8 @@ import { lessonsByTutor } from '..';
 import { getLessonValue, getLessonValues } from 'domains/lessons';
 import HoverMenu from 'components/HoverMenu.vue';
 
-initializeToggle(['lessons']);
-const visibilityFlags = initializeVisibilityFlags(['lessons']);
+initializeToggle(['lessonsByTutor']);
+const visibilityFlags = initializeVisibilityFlags(['lessonsByTutor']);
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const visibilityFlags = initializeVisibilityFlags(['lessons']);
       Upload new lesson
     </router-link>
 
-    <div v-for="(lesson, index) in getVisibleItems('lessons', lessonsByTutor, 5)" class="lesson-wrapper">
+    <div v-for="(lesson, index) in getVisibleItems('lessonsByTutor', lessonsByTutor, 5)" class="lesson-wrapper">
       <div class="hover-menu-wrapper">
         <router-link :key="index" :to="{ name: 'lessons.show', params: { id: lesson.id } }" class="show-lesson-link">
           {{ getLessonValue(lesson.id).title }}
@@ -34,8 +34,8 @@ const visibilityFlags = initializeVisibilityFlags(['lessons']);
       </router-link>
     </div>
 
-    <button @click="toggleContent('lessons')" class="toggle-content-button">
-      {{ visibilityFlags.lessons.value ?  'Show less &uarr;' : 'Show more lessons &darr;'  }}
+    <button @click="toggleContent('lessonsByTutor')" class="toggle-content-button">
+      {{ visibilityFlags.lessonsByTutor.value ?  'Show less &uarr;' : 'Show more lessons &darr;'  }}
     </button>
   </div>
 </template>

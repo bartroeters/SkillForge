@@ -18,4 +18,13 @@ export const userCourses = computed(() => getUserCourses());
 
 export const lessonsByTutor = computed(() => getLessonsByTutor());
 
-export const getUserFullName = (user: User) =>  `${user.firstName} ${user.lastName}`;
+export const getUserFullName = (user: User | number) =>  {
+  if (typeof user === 'number') {
+    const userId = user;
+    const firstName = userStore.getters.byId(userId).value?.firstName;
+    const lastName = userStore.getters.byId(userId).value?.lastName;
+    return `${firstName} ${lastName}`;
+  } else {
+    return `${user.firstName} ${user.lastName}`;
+  }
+}

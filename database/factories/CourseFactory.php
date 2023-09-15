@@ -20,7 +20,7 @@ class CourseFactory extends Factory
     {
         $imageFiles = glob('public/storage/images/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
         $alinea = implode("\n\n", fake()->paragraphs(rand(7, 9)));
-        $timestamp = fake()->dateTimeBetween('-3 years', '1 year');
+        $timestamp = fake()->dateTimeBetween('-4 years', '2 year');
 
         /**
          * Generate thumbnail if there are no images in `storage/app/public/images`.

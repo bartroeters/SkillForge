@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { getCurrentRouteId, getCurrentRouteName } from 'services/router';
-import { courseStore, isUserEnrolledInCourse, getCourseTutors } from '..';
+import { courseStore, isUserEnrolledInCourse, hasUserReviewedCourse, getCourseTutors, getStarRating } from '..';
 import { isLoggedIn } from 'domains/auth';
 import PageTitle from 'components/PageTitle.vue';
 import { getUserFullName, userStore } from 'domains/users';
 import { reviewStore } from 'domains/reviews';
 import { lessonStore } from 'domains/lessons';
 import WriteReviewForm from '../components/WriteReviewForm.vue';
-import { toggleContent, initializeVisibilityFlags, initializeToggle, getVisibleItems, setItemVisibility } from 'helpers/get-formatted-content';
+import { toggleContent, initializeVisibilityFlags, initializeToggle, getVisibleItems } from 'helpers/get-formatted-content';
 import { formatDate } from 'helpers/date-time-formatter';
 import { getSortedReviewValues } from 'domains/reviews';
 
@@ -107,13 +107,13 @@ const visibilityFlags = initializeVisibilityFlags(['tutors', 'reviews']);
       <h3>Reviews</h3>
 
       <write-review-form v-if="isUserEnrolledInCourse(courseId)" />
-
-      <div v-for="(review, index) in getVisibleItems('reviews', getSortedReviewValues(courseId), 2)" :key="index">
-        <p>{{ review.rating }}</p>
+      
+      <div v-for="(review, index) in getVisibleItems('reviews', getSortedReviewValues(courseId), 2)" :key="index" class="review-seperator">
+        <span v-for="star in getStarRating(review.rating)" :key="star" style="margin-right: 5px;">{{ star }}</span>
         <p>{{ review.comment }}</p>
-        <p>
-          <div>Review by {{ review.userId }}</div>
-          <div>{{ formatDate(review.createdAt) }}</div>
+        <p class="review-details">
+          <span>by {{ getUserFullName(review.userId) }}: </span>
+          <span>{{ formatDate(review.createdAt) }}</span>
         </p>
       </div>
 

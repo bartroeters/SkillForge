@@ -13,7 +13,7 @@ lessonStore.actions.getAll();
 me();
 
 const user = getLoggedInUser.value;
-const welcomeMessage = user ? `Welcome to your Dashboard, ${getUserFullName(user)}!` : '';
+const welcomeMessage = user ? `Welcome to your Dashboard, ${getUserFullName(user.id)}!` : '';
 </script>
 
 <template>

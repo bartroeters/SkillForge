@@ -98,10 +98,10 @@ Git commands
 * "git branch -r" => list alle remote branches"
 * "git log --graph" => visuele representatie van git log met branches"
 
-9/7/23:
+Sometime:
 * Keep working on difficult component.
+
+9/7/23:
 * CSS user dashboard got wrecked.
-* Beautify Course Page.
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Als je  intypt [voorbeeld] `http://127.0.0.1:8000/courses/2#review` wordt je niet geleid naar de `href=#review`.
-* Make Show Category Page.

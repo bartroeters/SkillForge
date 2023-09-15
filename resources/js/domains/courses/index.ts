@@ -7,9 +7,10 @@ import DashboardVue from './pages/Dashboard.vue';
 import EditVue from './pages/Edit.vue';
 import { getLoggedInUser } from 'domains/auth';
 import { User } from 'domains/users/types';
+import { Review } from 'domains/reviews/types';
 import { lessonStore } from 'domains/lessons';
 import { userStore } from 'domains/users';
-import { ComputedRef, computed } from 'vue';
+import { reviewStore } from 'domains/reviews';
 
 export const COURSE_DOMAIN_NAME = 'courses';
 
@@ -20,7 +21,7 @@ export const courseRoutes = [
   createShowRoute(COURSE_DOMAIN_NAME, ShowVue),
   createDashboardRoute(COURSE_DOMAIN_NAME, DashboardVue),
   createEditRoute(COURSE_DOMAIN_NAME, EditVue)
-];
+]
 
 export const getCourseTutors = (courseId: number): User[] => {
   const courseLessons = lessonStore.getters.all.value.filter(lesson => lesson.courseIds.includes(courseId));
@@ -28,13 +29,46 @@ export const getCourseTutors = (courseId: number): User[] => {
   const uniqueTutorIds = [...new Set(courseLessons.map(lesson => lesson.tutorId))];
   
   return uniqueTutorIds.map(tutorId => userStore.getters.byId(tutorId).value);
-};
+}
 
 export function isUserEnrolledInCourse(courseId: number): boolean {
   const loggedInUser = getLoggedInUser.value;
   return loggedInUser ? loggedInUser.courseIds.includes(courseId) : false;
-};
+}
+
+export function hasUserReviewedCourse(courseId: number): boolean {
+  const loggedInUser = getLoggedInUser.value;
+  const reviews = reviewStore.getters.all.value;
+  
+  if (loggedInUser && reviews) {
+    const reviewsByUser = reviews.filter((review: Review) => {
+      return review.userId === loggedInUser.id && review.courseId === courseId;
+    })
+
+    if (reviewsByUser !== null) {
+      return reviewsByUser.some(review => review.courseId === courseId);
+    }
+  }
+
+  return false;
+}
 
 export const getCourseValue = (courseId: number): Course => {
   return courseStore.getters.byId(courseId).value;
+}
+
+export function getStarRating(rating: number): string[] {
+  const starCount = 5;
+  const stars: string[] = Array(starCount).fill('☆');
+  const filledStars = Math.floor(rating);
+  
+  if (filledStars > 0) {
+    stars.fill('★', 0, filledStars);
+  }
+
+  if (rating - filledStars >= 0.5) {
+    stars[filledStars] = '☆';
+  }
+
+  return stars;
 }

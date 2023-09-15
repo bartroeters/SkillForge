@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Review } from 'domains/reviews/types';
+import { hasUserReviewedCourse } from 'domains/courses';
 import { reviewStore } from 'domains/reviews';
 import { resizeTextarea } from 'helpers/resize-text-area';
 import { getLoggedInUser } from 'domains/auth';
@@ -10,14 +11,19 @@ const props = defineProps({
   review: { type: Object as () => Review}
 })
 
+const courseId = Number(useRoute().params.id);
+
+const reviewSubmitted = ref(false);
+
 const addReview = async () => {
-  await reviewStore.actions.create(reviewData.value)
+  await reviewStore.actions.create(reviewData.value);
+  reviewSubmitted.value = true;
 }
 
 const reviewData = ref({
   ...props.review,
   userId: getLoggedInUser.value?.id,
-  courseId: Number(useRoute().params.id)
+  courseId: courseId
 } as Review);
 
 const setRating = (rating: number) => {
@@ -26,10 +32,8 @@ const setRating = (rating: number) => {
 </script>
 
 <template>
-  <form @submit.prevent="addReview" class="review-form">
+  <form @submit.prevent="addReview" class="review-form" v-if="!hasUserReviewedCourse(courseId)">
     <label for="comment" class="review-label">Write a review:</label>
-
-    <!-- <div class="rating-stars">★★★★★</div> -->
 
     <div class="rating-stars">
       <template v-for="star in 5" :key="star">
@@ -53,6 +57,10 @@ const setRating = (rating: number) => {
 
     <button class="review-submit-button">Submit</button>
   </form>
+
+  <div v-if="reviewSubmitted" class="thank-you-message">
+    Thank you for submitting your review!
+  </div>
 </template>
 
 <style>

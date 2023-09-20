@@ -8,8 +8,6 @@ import TheNavigation from 'components/TheNavigation.vue';
 
     <div id="page-title" />
 
-    <div class="content-container">
-      <RouterView />
-    </div>
+    <RouterView />
   </div>
 </template>

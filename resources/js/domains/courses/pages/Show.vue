@@ -112,7 +112,7 @@ const visibilityFlags = initializeVisibilityFlags(['tutors', 'reviews']);
         <span v-for="star in getStarRating(review.rating)" :key="star" style="margin-right: 5px;">{{ star }}</span>
         <p>{{ review.comment }}</p>
         <p class="review-details">
-          <span>by {{ getUserFullName(review.userId) }}: </span>
+          <span>by {{ getUserFullName(review.userId) }}, </span>
           <span>{{ formatDate(review.createdAt) }}</span>
         </p>
       </div>

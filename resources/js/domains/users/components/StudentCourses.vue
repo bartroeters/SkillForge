@@ -9,10 +9,10 @@ import { categoryStore } from 'domains/categories';
 import { getCategoryValue } from 'domains/categories';
 
 const lessonVisibilityFlags = ref<Record<number, boolean>>(setForeignIdVisibility.value);
-const courseVisibilityFlags = ref<Record<number, boolean>>(setForeignIdVisibility.value);
+// const courseVisibilityFlags = ref<Record<number, boolean>>(setForeignIdVisibility.value);
 
 categoryStore.actions.getAll();
-const categories = categoryStore.getters.all;
+// const categories = categoryStore.getters.all;
 
 courseStore.actions.getAll();
 </script>
@@ -45,7 +45,7 @@ courseStore.actions.getAll();
     </div>
   </div>
 
-  <div v-for="category in categories" :key="category.id">
+  <!-- <div v-for="category in categories" :key="category.id">
     <div
       v-for="(courseId, index) in getVisibleItemIds(category, category.courseIds, 2)"
       :key="index"
@@ -56,7 +56,7 @@ courseStore.actions.getAll();
     <button  @click="toggleContent(undefined, category.id)" class="toggle-content-button">
       {{ courseVisibilityFlags[category.id] ? 'Show less courses per category &uarr;' : 'Show more courses per category &darr;' }}
     </button>
-    </div>
+  </div> -->
 </template>
 
 <style scoped>

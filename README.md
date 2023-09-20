@@ -65,22 +65,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## Explanation of "resources\js\helpers\get-formatted-content.ts"
-`getVisibleItemIds()` allows for looping over foreign ID's as a property of any one Object, that has a many-to-many-relationship with any other Object, that the foreign ID's are a primary key of .
-
-The function takes three parameters:
-
-1 `items`: An array of foreign IDs.
-2 `id`: The ID of the Object, that has the foreign ID's as a property.
-3 `numOfVisibleItems`: The number of foreign IDs that are visible when `showAllContent` is set to false.
-
-The purpose of `resources\js\helpers\get-formatted-content.ts` is twofold. Firstly it is to allow looping over foreign id's of Objects in many to many relationships easily. Secondly it is to provide functionality to hide some of the content within the loop.
-
-The code works properly and is concise, however the loop only works for many-to-many relationships. Looping over any other property of an Object is not possible with the code as it is currently written.
-
-Small issues
-* Toast messages do not look good.
-
 Git commands
 * open gitbash in windows of in vscode terminal
 * ga evt. naar je project-map als je daar nog niet in zit
@@ -98,10 +82,11 @@ Git commands
 * "git branch -r" => list alle remote branches"
 * "git log --graph" => visuele representatie van git log met branches"
 
-Sometime:
+## Sometime
+* Toast messages do not look good.
 * Keep working on difficult component.
-
-9/7/23:
-* CSS user dashboard got wrecked.
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Als je  intypt [voorbeeld] `http://127.0.0.1:8000/courses/2#review` wordt je niet geleid naar de `href=#review`.
+
+## 9/21/23:
+* Continue with Trello, finish project.

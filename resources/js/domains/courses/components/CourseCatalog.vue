@@ -6,7 +6,6 @@ import type Category from 'domains/categories/types';
 import { getVisibleSentences, toggleRows, setSentenceVisibility } from 'helpers/get-formatted-content';
 import PageTitle from 'components/PageTitle.vue';
 import HoverMenu from 'components/HoverMenu.vue';
-import Catalog from 'components/Catalog.vue';
 
 const props = defineProps({
   courses: { type: Array as PropType<Course[]> },

@@ -6,4 +6,5 @@ export default interface Lesson {
   videoContent: string;
   textContent: string;
   courseIds: number[];
+  createdAt: string;
 }

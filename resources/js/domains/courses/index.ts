@@ -11,6 +11,10 @@ import { Review } from 'domains/reviews/types';
 import { lessonStore } from 'domains/lessons';
 import { userStore } from 'domains/users';
 import { reviewStore } from 'domains/reviews';
+import { computed } from 'vue';
+import { getUserCourses } from 'services/utils/cross-domain-utils';
+import Category from 'domains/categories/types';
+import { categoryStore } from 'domains/categories';
 
 export const COURSE_DOMAIN_NAME = 'courses';
 
@@ -22,6 +26,16 @@ export const courseRoutes = [
   createDashboardRoute(COURSE_DOMAIN_NAME, DashboardVue),
   createEditRoute(COURSE_DOMAIN_NAME, EditVue)
 ]
+
+export const getCourseValue = (courseId: number): Course => {
+  return courseStore.getters.byId(courseId).value;
+}
+
+export const getSortedCourses = () => {
+  return courseStore.getters.all.value.sort(
+    (courseA, courseZ) => courseA.title.localeCompare(courseZ.title)
+  )
+}
 
 export const getCourseTutors = (courseId: number): User[] => {
   const courseLessons = lessonStore.getters.all.value.filter(lesson => lesson.courseIds.includes(courseId));
@@ -51,10 +65,6 @@ export function hasUserReviewedCourse(courseId: number): boolean {
   }
 
   return false;
-}
-
-export const getCourseValue = (courseId: number): Course => {
-  return courseStore.getters.byId(courseId).value;
 }
 
 export function getStarRating(rating: number): string[] {

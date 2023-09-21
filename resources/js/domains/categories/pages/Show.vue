@@ -2,23 +2,32 @@
 import PageTitle from 'components/PageTitle.vue';
 import { categoryStore } from '..';
 import { getCurrentRouteId } from 'services/router';
-import { courseStore } from 'domains/courses';
+import { courseStore, getCourseValue, getSortedCourses } from 'domains/courses';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import CourseCatalog from 'domains/courses/components/CourseCatalog.vue';
 
-const categoryId = getCurrentRouteId();
-const category = categoryStore.getters.byId(categoryId);
+const sortedCourses = computed(() => getSortedCourses());
+const route = useRoute();
+const categoryId = route.params.id as string;
+const category = categoryStore.getters.byId(parseInt(categoryId));
 
-const courses = courseStore.getters.all;
+const filteredCourses = computed(() => {
+    if (categoryId) {
+        return sortedCourses.value.filter(course => course.categoryIds.includes(parseInt(categoryId)));
+    } else {
+        return sortedCourses.value;
+    }
+});
 
 categoryStore.actions.getAll();
 courseStore.actions.getAll();
 
-const title = `${category.value?.title}`;
+const title = computed (() => category.value?.title.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' '));
 </script>
 
 <template>
-  <page-title :text="title"/>
+  <page-title :text="`Courses in Category ` + title"/>
 
-  <div v-for="course in courses" :index="course.id">
-    {{ course.title }}
-  </div>
+  <course-catalog :courses="filteredCourses" :category="category" />
 </template>

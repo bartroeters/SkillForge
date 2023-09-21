@@ -17,7 +17,7 @@ class CourseSeeder extends Seeder
         $me = User::find(1);
         $courses = Course::factory(12)->create();
 
-        $numOfCoursesToEnroll = 5;
+        $numOfCoursesToEnroll = 3;
 
         foreach ($courses as $course) {
             $randomUserIds = User::inRandomOrder()

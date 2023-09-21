@@ -88,5 +88,10 @@ Git commands
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Als je  intypt [voorbeeld] `http://127.0.0.1:8000/courses/2#review` wordt je niet geleid naar de `href=#review`.
 
-## 9/21/23:
-* Continue with Trello, finish project.
+## 9/22/23:
+!! Continue with Trello, finish project.
+* Order lessons in user dashboard by date
+* Show lesson page
+* Course dashboard
+* Enroll course page
+* Forgot password page

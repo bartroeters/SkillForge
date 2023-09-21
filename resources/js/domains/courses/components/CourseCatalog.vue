@@ -1,23 +1,26 @@
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
 import type Course from '../types';
-import { getCategoryValue } from 'domains/categories';
+import { categoryStore, getCategoryValue } from 'domains/categories';
 import type Category from 'domains/categories/types';
 import { getVisibleSentences, toggleRows, setSentenceVisibility } from 'helpers/get-formatted-content';
-import PageTitle from 'components/PageTitle.vue';
 import HoverMenu from 'components/HoverMenu.vue';
+import { useRoute } from 'vue-router';
 
 const props = defineProps({
   courses: { type: Array as PropType<Course[]> },
   categories: { type: Array as PropType<Category[]> }
 });
 
+const route = useRoute();
+const categoryId = Number.parseInt(route.params.id as string);
+const category = categoryStore.getters.byId(categoryId);
+console.log(category.value?.title);
+
 const courseDescriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenceVisibility.value);
 </script>
 
 <template>
-  <page-title text="Course Catalog" />
-
   <div class="course-grid">
     <div v-for="course in props.courses" :key="course.id" class="course-card">
       <div class="course-thumbnail">
@@ -52,7 +55,7 @@ const courseDescriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenc
         </span>
 
 
-        <div v-if="course.categoryIds && course.categoryIds.length > 0" class="course-categories">
+        <div v-if="!category && course.categoryIds && course.categoryIds.length > 0" class="course-categories">
           <span class="category-label">
             {{ course.categoryIds.length === 1
             ? 'More courses within the same discipline:'
@@ -81,7 +84,7 @@ const courseDescriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenc
           </span>
         </div>
 
-        <div v-else>This course does not belong to any discipline.</div>
+        <div v-if="!category && course.categoryIds.length === 0 && course.categoryIds.length === 0">This course does not belong to any discipline.</div>
       </div>
     </div>
   </div>

@@ -19,7 +19,7 @@ const visibilityFlags = initializeVisibilityFlags(['lessonsByTutor']);
     <div v-for="(lesson, index) in getVisibleItems('lessonsByTutor', lessonsByTutor, 5)" class="lesson-wrapper">
       <div class="hover-menu-wrapper">
         <router-link :key="index" :to="{ name: 'lessons.show', params: { id: lesson.id } }" class="show-lesson-link">
-          {{ getLessonValue(lesson.id).title }}
+          {{ getLessonValue(lesson.id)?.title }}
         </router-link>
 
         <hover-menu

@@ -6,13 +6,11 @@ import HoverMenu from 'components/HoverMenu.vue';
 import { courseStore, getCourseValue } from 'domains/courses';
 import { getLessonValue, lessonStore } from 'domains/lessons';
 import { categoryStore } from 'domains/categories';
-import { getCategoryValue } from 'domains/categories';
+import { formatDate } from 'helpers/date-time-formatter';
 
 const lessonVisibilityFlags = ref<Record<number, boolean>>(setForeignIdVisibility.value);
-// const courseVisibilityFlags = ref<Record<number, boolean>>(setForeignIdVisibility.value);
 
 categoryStore.actions.getAll();
-// const categories = categoryStore.getters.all;
 
 courseStore.actions.getAll();
 </script>
@@ -37,6 +35,7 @@ courseStore.actions.getAll();
         >
         {{ lessonId }}
         {{ getLessonValue(lessonId)?.title }}
+        ({{ formatDate(getLessonValue(lessonId)?.createdAt) }})
       </router-link>
 
       <button  @click="toggleContent(undefined, course.id)" class="toggle-content-button">
@@ -44,19 +43,6 @@ courseStore.actions.getAll();
       </button>
     </div>
   </div>
-
-  <!-- <div v-for="category in categories" :key="category.id">
-    <div
-      v-for="(courseId, index) in getVisibleItemIds(category, category.courseIds, 2)"
-      :key="index"
-      >
-      {{ getCourseValue(courseId)?.title }}
-    </div>
-
-    <button  @click="toggleContent(undefined, category.id)" class="toggle-content-button">
-      {{ courseVisibilityFlags[category.id] ? 'Show less courses per category &uarr;' : 'Show more courses per category &darr;' }}
-    </button>
-  </div> -->
 </template>
 
 <style scoped>

@@ -22,8 +22,6 @@ class LessonSeeder extends Seeder
             $coursesForTutor = $tutor->courses()->select('courses.id')->pluck('id')->toArray();
             $availableCourseIds = Course::whereNotIn('id', $coursesForTutor)->inRandomOrder()->pluck('id')->take(2);
 
-            // dd($tutor, $coursesForTutor, $availableCourseIds);
-
             $randomSourceIds = Source::inRandomOrder()->pluck('id')->random(rand(2, min(6, Source::count())));
             
             $lesson->courses()->sync($availableCourseIds);

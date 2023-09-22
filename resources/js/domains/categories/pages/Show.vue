@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import PageTitle from 'components/PageTitle.vue';
 import { categoryStore } from '..';
-import { getCurrentRouteId } from 'services/router';
-import { courseStore, getCourseValue, getSortedCourses } from 'domains/courses';
+import { courseStore, getSortedCourses } from 'domains/courses';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import CourseCatalog from 'domains/courses/components/CourseCatalog.vue';
@@ -18,7 +17,7 @@ const filteredCourses = computed(() => {
     } else {
         return sortedCourses.value;
     }
-});
+})
 
 categoryStore.actions.getAll();
 courseStore.actions.getAll();

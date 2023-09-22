@@ -90,7 +90,6 @@ Git commands
 
 ## 9/22/23:
 !! Continue with Trello, finish project.
-* Order lessons in user dashboard by date
 * Show lesson page
 * Course dashboard
 * Enroll course page

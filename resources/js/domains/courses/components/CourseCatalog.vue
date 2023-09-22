@@ -15,7 +15,6 @@ const props = defineProps({
 const route = useRoute();
 const categoryId = Number.parseInt(route.params.id as string);
 const category = categoryStore.getters.byId(categoryId);
-console.log(category.value?.title);
 
 const courseDescriptionVisibilityFlags = ref<Record<number, boolean>>(setSentenceVisibility.value);
 </script>

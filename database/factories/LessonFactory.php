@@ -32,7 +32,7 @@ class LessonFactory extends Factory
         // $thumbnailPath = include 'database/factories/helpers/thumbnail_downloader.php';
 
         return [
-            'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(1, 3), true))),
+            'title' => ucfirst(Str::remove('.', fake()->unique()->words(rand(3, 6), true))),
             'tutorId' => $tutor->id,
             'description' => implode("\n\n", fake()->paragraphs(rand(1, 2))),
             'textContent' => implode("\n\n", fake()->paragraphs(rand(10, 15))),

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { userCourses } from '..';
 import { toggleContent, setForeignIdVisibility, getVisibleItemIds } from 'helpers/get-formatted-content';
 import HoverMenu from 'components/HoverMenu.vue';
@@ -11,7 +11,6 @@ import { formatDate } from 'helpers/date-time-formatter';
 const lessonVisibilityFlags = ref<Record<number, boolean>>(setForeignIdVisibility.value);
 
 categoryStore.actions.getAll();
-
 courseStore.actions.getAll();
 </script>
 
@@ -35,7 +34,6 @@ courseStore.actions.getAll();
         >
         {{ lessonId }}
         {{ getLessonValue(lessonId)?.title }}
-        ({{ formatDate(getLessonValue(lessonId)?.createdAt) }})
       </router-link>
 
       <button  @click="toggleContent(undefined, course.id)" class="toggle-content-button">

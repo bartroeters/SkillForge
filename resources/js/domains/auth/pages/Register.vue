@@ -20,7 +20,6 @@ createdAt: '',
 courseIds: []
 });
 
-// const sourceRoute = getCurrentRouteQuery().sourceRoute;
 const redirectedFromCourseEnrollment = computed(() => useRoute().query.sourceRoute === 'courses.show');
 const courseId = Number(useRoute().params.id);
 
@@ -32,7 +31,6 @@ const registerUser = async () => {
 };
 
 const continueEnrollment = async () => {
-  console.log('continueEnrollment function invoked');
   await postRequest(`register`, userToRegister.value);
   await login({ email: userToRegister.value.email, password: userToRegister.value.password });
   goToRoute('courses.edit', courseId);

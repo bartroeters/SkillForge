@@ -65,13 +65,15 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-Git commands
+## Git commands
 * open gitbash in windows of in vscode terminal
 * ga evt. naar je project-map als je daar nog niet in zit
-* "git status" => controleer   status
+* "git status" => controleer status
+* "git init" => initialiseer nieuwe git repo
 * "git add ." => stage alle bestanden / changes
 * "git add <filename>" => stage specifiek 1 bestand
-* "git commit -m 'commit msg'" => commit wat je gestaged hebt
+* `git commit -m "commit msg"` => commit wat je gestaged hebt
+* `git remote add origin https://github.com/bartroeters/name-of-app.git`
 * "git push" => stuur alle changes naar je remote repo
 * "git pull" => haal alle changes van remote op naar je local repo
 
@@ -87,10 +89,11 @@ Git commands
 * Keep working on difficult component.
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Als je  intypt [voorbeeld] `http://127.0.0.1:8000/courses/2#review` wordt je niet geleid naar de `href=#review`.
+* Does `illuminate/hashing` in `composer.json` cause the password hashing in the user model to break?
 
 ## 9/22/23:
 !! Continue with Trello, finish project.
-* Show lesson page
+* Use COURSE_DASHBOARD_DOMAIN_NAME instead of COURSE_DOMAIN_NAME!
 * Course dashboard
 * Enroll course page
 * Forgot password page

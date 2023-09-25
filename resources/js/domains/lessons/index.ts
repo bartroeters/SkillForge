@@ -4,6 +4,8 @@ import Lesson from './types';
 import ShowVue from './pages/Show.vue';
 import CreateVue from './pages/Create.vue';
 import EditVue from './pages/Edit.vue';
+import { computed } from 'vue';
+import { getDashboardLink } from 'services/utils/cross-domain-utils';
 
 export const LESSON_DOMAIN_NAME = 'lessons';
 
@@ -14,6 +16,8 @@ export const lessonRoutes = [
   createCreateRoute(LESSON_DOMAIN_NAME, CreateVue),
   createEditRoute(LESSON_DOMAIN_NAME, EditVue)
 ]
+
+export const goToDashBoardLink = computed(() => getDashboardLink());
 
 export const getLessonValue = (lessonId: number): Lesson => {
     return lessonStore.getters.byId(lessonId).value;

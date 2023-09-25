@@ -11,10 +11,6 @@ import { Review } from 'domains/reviews/types';
 import { lessonStore } from 'domains/lessons';
 import { userStore } from 'domains/users';
 import { reviewStore } from 'domains/reviews';
-import { computed } from 'vue';
-import { getUserCourses } from 'services/utils/cross-domain-utils';
-import Category from 'domains/categories/types';
-import { categoryStore } from 'domains/categories';
 
 export const COURSE_DOMAIN_NAME = 'courses';
 
@@ -23,6 +19,7 @@ export const courseStore = storeModuleFactory<Course>(COURSE_DOMAIN_NAME);
 export const courseRoutes = [
   createOverviewRoute(COURSE_DOMAIN_NAME, OverviewVue),
   createShowRoute(COURSE_DOMAIN_NAME, ShowVue),
+  // createShowRoute('course-dashboard', DashboardVue),
   createDashboardRoute(COURSE_DOMAIN_NAME, DashboardVue),
   createEditRoute(COURSE_DOMAIN_NAME, EditVue)
 ]

@@ -7,6 +7,7 @@ import { courseStore, getCourseValue } from 'domains/courses';
 import { getLessonValue, lessonStore } from 'domains/lessons';
 import { categoryStore } from 'domains/categories';
 import { formatDate } from 'helpers/date-time-formatter';
+import { getCurrentRouteName } from 'services/router';
 
 const lessonVisibilityFlags = ref<Record<number, boolean>>(setForeignIdVisibility.value);
 
@@ -29,7 +30,7 @@ courseStore.actions.getAll();
       <router-link
         v-for="(lessonId, index) in getVisibleItemIds(course, course.lessonIds, 3)"
         :key="index"
-        :to="{ name: 'lessons.show', params: { id: lessonId } }"
+        :to="{ name: 'lessons.show', params: { id: lessonId }, query: { sourceRoute: getCurrentRouteName() } }"
         class="show-lesson-link"
         >
         {{ lessonId }}

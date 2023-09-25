@@ -63,6 +63,6 @@ const setRating = (rating: number) => {
   </div>
 </template>
 
-<style>
+<style scoped>
 @import '../../../../css/show-page.css';
 </style>

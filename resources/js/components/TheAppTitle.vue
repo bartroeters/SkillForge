@@ -9,7 +9,7 @@ import { useRoute } from 'vue-router';
     <router-link
       class="app-title"
       :to="isLoggedIn
-      ? { name: 'users.dashboard' }
+      ? { name: 'user-dashboard.overview' }
       : { name: 'courses.overview' }"
       >
       <slot />
@@ -17,7 +17,7 @@ import { useRoute } from 'vue-router';
 
     <hover-menu
       :text="isLoggedIn
-        ? ((useRoute().name === 'users.dashboard')
+        ? ((useRoute().name === 'user-dashboard.overview')
           ? 'Viewing dashboard'
           : 'Go to your dashboard')
         : ((useRoute().name === 'courses.overview')

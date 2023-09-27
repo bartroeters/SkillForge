@@ -1,0 +1,72 @@
+.redirect-to-dashboard {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.redirect-to-dashboard a {
+  text-decoration: none;
+  color: #409bfc;
+}
+
+.back-to-dashboard:hover,
+.redirect-to-user-dashboard:hover,
+.redirect-to-course-dashboard:hover {
+  display: inline;
+  letter-spacing: .2px;
+  color: #0056b3;
+}
+
+.hidden-arrow {
+  display: none;
+}
+
+.back-to-dashboard:hover .hidden-arrow,
+.redirect-to-user-dashboard:hover .hidden-arrow,
+.redirect-to-course-dashboard:hover .hidden-arrow {
+  display: inline;
+  margin-right: 3px;
+}
+
+.lesson-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-tutor {
+  text-align: right;
+  margin: -12px 0 -8px 0;
+  font-style: italic;
+}
+
+.lesson-tutor > span {
+  font-weight: 600;
+}
+
+.paragraph {
+  font-size: 102%;
+  line-height: 127%;
+  letter-spacing: .2px;
+}
+
+.video-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-image {
+  max-width: 50%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.note-title {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 145%;
+  letter-spacing: .8px;
+}

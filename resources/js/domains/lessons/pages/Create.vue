@@ -6,7 +6,7 @@ import { goToRoute } from 'services/router';
 
 const createLesson = async (lessonData: Lesson) => {
     await lessonStore.actions.create(lessonData);
-    goToRoute('users.dashboard');
+    goToRoute('user-dashboard.overview');
 };
 </script>
 

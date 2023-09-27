@@ -86,14 +86,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Sometime
 * Toast messages do not look good.
-* Keep working on difficult component.
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Als je  intypt [voorbeeld] `http://127.0.0.1:8000/courses/2#review` wordt je niet geleid naar de `href=#review`.
 * Does `illuminate/hashing` in `composer.json` cause the password hashing in the user model to break?
 
-## 9/22/23:
-!! Continue with Trello, finish project.
-* Use COURSE_DASHBOARD_DOMAIN_NAME instead of COURSE_DOMAIN_NAME!
-* Course dashboard
+## 9/28/23:
 * Enroll course page
 * Forgot password page

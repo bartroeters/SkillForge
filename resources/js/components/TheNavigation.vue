@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { isLoggedIn, logout } from 'domains/auth';
 import { goToOverviewPage } from 'services/router';
-import { COURSE_DOMAIN_NAME } from 'domains/courses';
+import { COURSE_DOMAIN_NAME, courseStore } from 'domains/courses';
 import Dropdown from './Dropdown.vue';
 import TheAppTitle from './TheAppTitle.vue';
+import { userCourses } from 'domains/users';
+
+courseStore.actions.getAll();
 
 function redirectUponLogout() {
   goToOverviewPage(COURSE_DOMAIN_NAME);
@@ -15,8 +18,14 @@ function redirectUponLogout() {
     <the-app-title>Skill Forge</the-app-title>
 
     <div class="navigation-links">
-      <span v-if="isLoggedIn">
-        <dropdown :text="'Browse Courses'" class-name="dropdown-menu" :closeWithDelay="true">
+      <span v-if="isLoggedIn" style="display: flex;">
+        <dropdown :text="'Your courses'" class-name="dropdown-menu" :closeWithDelay="true">
+          <span v-for="(course, index) in userCourses" :key="index" style="display: flex; flex-direction: column;">
+            <router-link v-if="course" :to="{name: 'course-dashboard.show', params: {id: course.id}}">{{ course?.title }}</router-link>
+          </span>
+        </dropdown>
+
+        <dropdown :text="'More Courses'" class-name="dropdown-menu" :closeWithDelay="true">
           <router-link :to="{ name: 'courses.overview' }">All Courses</router-link>
           <router-link :to="{ name: 'categories.overview' }">Disciplines</router-link>
         </dropdown>

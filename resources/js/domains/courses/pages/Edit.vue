@@ -10,7 +10,7 @@ const course =  courseStore.getters.byId(courseId);
 
 const editCourse = async (userToEnroll: Course) => {
   await courseStore.actions.update(courseId, userToEnroll);
-  goToRoute('users.dashboard');
+  goToRoute('user-dashboard.overview');
 }
 </script>
 

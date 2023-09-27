@@ -22,7 +22,8 @@ class AnnouncementResource extends JsonResource
             'courseId' => $this->courseId,
             'userId' => $this->userId,
             'title' => $this->title,
-            'content' => $this->content
+            'content' => $this->content,
+            'createdAt' => $this->createdAt
         ];
     }
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { getCurrentRouteId, getCurrentRouteName } from 'services/router';
-import { courseStore, isUserEnrolledInCourse, hasUserReviewedCourse, getCourseTutors, getStarRating } from '..';
+import { courseStore, isUserEnrolledInCourse, getCourseTutors, getStarRating } from '..';
 import { isLoggedIn } from 'domains/auth';
 import PageTitle from 'components/PageTitle.vue';
 import { getUserFullName, userStore } from 'domains/users';
@@ -55,7 +55,7 @@ const visibilityFlags = initializeVisibilityFlags(['tutors', 'reviews']);
 
           <router-link
             v-if="isUserEnrolledInCourse(courseId)"
-            :to="{name: 'courses.dashboard'}"
+            :to="{name: 'course-dashboard.show', params: {id: courseId}}"
             class="review-course-link"
             >
             <span class="hidden-arrow">&rarr;</span>
@@ -91,7 +91,7 @@ const visibilityFlags = initializeVisibilityFlags(['tutors', 'reviews']);
 
       <div class="tutor-grid">
         <div v-for="(tutor, index) in getVisibleItems('tutors', getCourseTutors(courseId), 3)" :key="index">
-          <img :src="tutor.profilePicture" :alt="getUserFullName(tutor)" height="135" width="108">
+          <img :src="tutor?.profilePicture" :alt="getUserFullName(tutor)" height="135" width="108">
           <p>{{ getUserFullName(tutor) }}</p>
           <p>{{ tutor.email }}</p>
         </div>
@@ -125,5 +125,5 @@ const visibilityFlags = initializeVisibilityFlags(['tutors', 'reviews']);
 </template>
 
 <style scoped>
-@import '../../../../css/show-page.css';
+@import '../../../../css/show-course.css';
 </style>

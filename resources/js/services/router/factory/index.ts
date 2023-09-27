@@ -34,10 +34,3 @@ export const createEditRoute = (module: string, component: RouteComponent, meta?
   component,
   meta: meta ? meta : {auth: true, canSeeWhenLoggedIn: true},
 });
-
-export const createDashboardRoute = (module: string, component: RouteComponent, meta?: Meta) => ({
-  path: `/${module}/dashboard`,
-  name: module + DASHBOARD_PAGE_NAME,
-  component,
-  meta: meta ? meta : {auth: true, canSeeWhenLoggedIn: true},
-});

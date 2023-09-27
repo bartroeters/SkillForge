@@ -74,8 +74,6 @@ export const goToEditPage = (moduleName: string, id: number) => goToRoute(module
 export const goToCreatePage = (moduleName: string) => goToRoute(moduleName + CREATE_PAGE_NAME);
 /** Go to the overview page for the given module name */
 export const goToOverviewPage = (moduleName: string) => goToRoute(moduleName + OVERVIEW_PAGE_NAME);
-/** Go to the dashboard page for the given module name */
-export const goToDashboardPage = (moduleName: string) => goToRoute(moduleName + DASHBOARD_PAGE_NAME);
 
 /** Get the current route */
 export const getCurrentRoute = () => router.currentRoute;

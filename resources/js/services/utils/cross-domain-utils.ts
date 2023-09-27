@@ -13,13 +13,15 @@ export function getLessonsByTutor() {
 };
 
 export function getDashboardLink() {
-  const redirectedFromUserDashboard = useRoute().query.sourceRoute === 'users.dashboard';
-  const redirectedFromCourseDashboard = useRoute().query.sourceRoute === 'courses.dashboard';
+  const route = useRoute();
+  const redirectedFromUserDashboard = route.query.sourceRoute === 'user-dashboard.overview';
+  const redirectedFromCourseDashboard = route.query.sourceRoute === 'course-dashboard.show';
+  const courseId = Number(route.query.sourceCourseId);
 
   if (redirectedFromUserDashboard) {
-    return { name: 'users.dashboard' };
-  } else if (redirectedFromCourseDashboard) {
-    return { name: 'courses.dashboard' };
+    return { name: 'user-dashboard.overview' };
+  } else if (redirectedFromCourseDashboard && !isNaN(courseId)) {
+    return { name: 'course-dashboard.show', params: { id: courseId } };
   } else {
     return {};
   }

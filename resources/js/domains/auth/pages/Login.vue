@@ -1,15 +1,15 @@
 <script setup>
-import {goToDashboardPage} from 'services/router';
+import {goToOverviewPage} from 'services/router';
 import {login} from '../';
 import {ref} from 'vue';
-import { USER_DOMAIN_NAME } from '../../users';
+import { USER_DASHBOARD_DOMAIN_NAME } from '../../users';
 import PageTitle from 'components/PageTitle.vue';
 
 const credentials = ref({});
 
 const submit = async () => {
   await login(credentials.value);
-  goToDashboardPage(USER_DOMAIN_NAME);
+  goToOverviewPage(USER_DASHBOARD_DOMAIN_NAME);
 };
 </script>
 

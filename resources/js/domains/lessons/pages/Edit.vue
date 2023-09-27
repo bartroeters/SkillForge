@@ -9,7 +9,7 @@ const lesson = lessonStore.getters.byId(lessonId);
 
 const editLesson = async (lessonData: Lesson) => {
     await lessonStore.actions.update(lessonId, lessonData);
-    goToRoute('users.dashboard');
+    goToRoute('user-dashboard.overview');
 };
 </script>
 

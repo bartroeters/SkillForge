@@ -20,7 +20,7 @@ courseStore.actions.getAll();
 
   <div v-for="(course, index) in userCourses" :key="index" class="course-wrapper">
     <div v-if="course">
-      <router-link :to="{ name: 'courses.dashboard' }" class="course-title">
+      <router-link :to="{ name: 'course-dashboard.show', params: {id: course.id} }" class="course-title">
         <div class="hover-menu-wrapper">
           <h4>{{ course.title }}</h4>
           <hover-menu :text="`Go to ${course.title} Dashboard`" />

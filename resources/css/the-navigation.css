@@ -31,6 +31,9 @@
 }
 
 /* Styles for navigation links */
+.navigation-links {
+    color: rgb(255, 255, 255);
+}
 .navigation-links a {
     display: inline-flex;
     align-items: center;

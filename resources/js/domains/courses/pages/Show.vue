@@ -44,9 +44,9 @@ const visibilityFlags = initializeVisibilityFlags(['tutors', 'reviews']);
 
         <span class="side-menu">
           <router-link
-          :to="isLoggedIn
+            :to="isLoggedIn
             ? { name: 'courses.edit', params: { id: courseId } }
-            : { name: 'enroll', params: { id: courseId }, query: { sourceRoute: getCurrentRouteName() } }"
+            : { name: 'enroll', params: { id: courseId }, query: { sourceRoute: getCurrentRouteId() } }"
             class="enroll-course-link"
             >
             <span class="hidden-arrow">&rarr;</span>

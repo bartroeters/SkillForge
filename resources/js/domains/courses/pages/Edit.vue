@@ -2,18 +2,17 @@
 import { getCurrentRouteId, goToRoute } from 'services/router';
 import { courseStore } from '..';
 import EnrollCourseForm from '../components/EnrollCourseForm.vue';
-import Course from '../types';
 import { isLoggedIn } from 'domains/auth';
 
 const courseId = getCurrentRouteId();
 const course =  courseStore.getters.byId(courseId);
 
-const editCourse = async (userToEnroll: Course) => {
-  await courseStore.actions.update(courseId, userToEnroll);
+const enrollUser = async () => {
+  await courseStore.actions.enrollUser(courseId, course.value);
   goToRoute('user-dashboard.overview');
 }
 </script>
 
 <template>
-  <enroll-course-form v-if="isLoggedIn" :course="course" @enrollCourse="editCourse"/>
+  <enroll-course-form v-if="isLoggedIn" :course="course" @enrollUser="enrollUser"/>
 </template>

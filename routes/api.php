@@ -10,7 +10,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfilePictureController;
+// use App\Http\Controllers\ProfilePictureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,8 @@ Route::post('reset-password', [AuthController::class, 'updatePassword']);
 Route::post('register', [AuthController::class, 'register']);
 
 Route::resource('courses', CourseController::class);
+Route::post('courses/{course}/enroll', [CourseController::class, 'enrollUser']);
+
 Route::resource('categories', CategoryController::class);
 Route::resource('users', UserController::class);
 Route::resource('lessons', LessonController::class);
@@ -42,4 +44,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('me', [AuthController::class, 'me']);
 });
 
-Route::post('/upload-profile-picture', [ProfilePictureController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
+// Route::post('/upload-profile-picture', [ProfilePictureController::class, 'uploadProfilePicture'])->name('upload.profile.picture');

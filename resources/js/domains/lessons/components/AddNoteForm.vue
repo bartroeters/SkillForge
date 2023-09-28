@@ -44,44 +44,5 @@ const noteData = ref({
 </template>
 
 <style scoped>
-.note-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 800px;
-  padding: 20px;
-  margin: 0 20px 20px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-}
-
-.note-label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.note-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.submit-note-button {
-  background-color: #f6f8fa;
-  color: #000000;
-  width: fit-content;
-  border: solid 1px #ccc;
-  border-radius: 4px;
-  margin: 10px 0 0 0;
-  padding: 8px 16px;
-  font-size: 15.5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  letter-spacing: 1.9px;
-  opacity: .9;
-}
+@import '../../../../css/add-note-form.css';
 </style>

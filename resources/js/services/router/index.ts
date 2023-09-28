@@ -3,8 +3,7 @@ import {
   CREATE_PAGE_NAME,
   EDIT_PAGE_NAME,
   OVERVIEW_PAGE_NAME,
-  SHOW_PAGE_NAME,
-  DASHBOARD_PAGE_NAME
+  SHOW_PAGE_NAME
 }
   from './factory';
 import {

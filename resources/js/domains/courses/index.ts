@@ -12,11 +12,24 @@ import { lessonStore } from 'domains/lessons';
 import { userStore } from 'domains/users';
 import { reviewStore } from 'domains/reviews';
 import Lesson from 'domains/lessons/types';
+import { postRequest } from 'services/http';
 
 export const COURSE_DOMAIN_NAME = 'courses';
 export const COURSE_DASHBOARD_DOMAIN_NAME = 'course-dashboard';
 
-export const courseStore = storeModuleFactory<Course>(COURSE_DOMAIN_NAME);
+export const baseCourseStore = storeModuleFactory<Course>(COURSE_DOMAIN_NAME);
+
+export const courseStore = {
+  ...baseCourseStore,
+  actions: {
+    ...baseCourseStore.actions,
+    enrollUser: async (courseId: number, course: Course) => {
+      const {data} = await postRequest(`${COURSE_DOMAIN_NAME}/${courseId}/enroll`, course);
+      if (!data) return;
+      baseCourseStore.setters.setById(data);
+    },
+  },
+};
 
 export const courseRoutes = [
   createOverviewRoute(COURSE_DOMAIN_NAME, OverviewVue),

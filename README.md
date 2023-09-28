@@ -89,7 +89,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
 * Als je  intypt [voorbeeld] `http://127.0.0.1:8000/courses/2#review` wordt je niet geleid naar de `href=#review`.
 * Does `illuminate/hashing` in `composer.json` cause the password hashing in the user model to break?
+* Close one dropdown menu when another opens
 
-## 9/28/23:
-* Enroll course page
+## 9/29/23:
+* Enhance enroll course page
 * Forgot password page
+* klaar!

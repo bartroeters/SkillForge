@@ -29,8 +29,6 @@ Route::post('reset-password', [AuthController::class, 'updatePassword']);
 Route::post('register', [AuthController::class, 'register']);
 
 Route::resource('courses', CourseController::class);
-Route::post('courses/{course}/enroll', [CourseController::class, 'enrollUser']);
-
 Route::resource('categories', CategoryController::class);
 Route::resource('users', UserController::class);
 Route::resource('lessons', LessonController::class);
@@ -40,6 +38,7 @@ Route::resource('reviews', ReviewController::class);
 Route::resource('sources', SourceController::class);
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('courses/{course}/enroll', [CourseController::class, 'enrollUser']);
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('me', [AuthController::class, 'me']);
 });

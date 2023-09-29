@@ -15,13 +15,17 @@
   <template>
     <page-title :text="`${pageTitle}`" />
 
-    <form @submit.prevent="$emit('enrollUser')">
+    <div class="enroll-container">
+    <form class="enroll-form" @submit.prevent="$emit('enrollUser')">
       <h2>Enroll in {{ course?.title }}</h2>
       <p>Course Description: {{ course?.description }}</p>
-      <button type="submit">Enroll</button>
+      <button type="submit" class="enroll-button">Enroll</button>
     </form>
+  </div>
   </template>
 
   <style scoped>
   @import '../../../../css/enroll-course-form.css';
+
+  
   </style>

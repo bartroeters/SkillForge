@@ -15,24 +15,27 @@ const sendEmailResetPassword = async () => {
 </script>
 
 <template>
-  <form @submit.prevent="resetPassword">
-    <h1>
-      Forgot password
-    </h1>
+  <div class="forgot-password-container">
+    <form class="forgot-password-form" @submit.prevent="sendEmailResetPassword">
+      <h1>Forgot password</h1>
     
-    <p>
-      Please enter your email address below. You will receive instructions to reset your password.
-    </p>
+      <p>
+        Please enter your email address below. You will receive instructions to reset your password.
+      </p>
     
-    <div>
-      <label for="email">Email</label>
-      <input v-model="email" type="email" name="email" placeholder="Email address" />
-      <BaseFormError name="email" />
-    </div>
+      <div class="forgot-password-input">
+        <label for="email">Email</label>
+        <input v-model="email" type="email" name="email" placeholder="Email address" class="input-field" />
+        <BaseFormError name="email" />
+      </div>
     
-    <div>
-      <button @click="sendEmailResetPassword">Send</button>
-      <router-link :to="{ name: 'Login' }">Go back</router-link>
-    </div>
-  </form>
+      <div>
+        <button type="submit" class="forgot-password-button">Send</button>
+      </div>
+    </form>
+  </div>
 </template>
+
+<style scoped>
+@import '../../../../css/forgot-password-form.css';
+</style>

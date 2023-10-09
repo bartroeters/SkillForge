@@ -84,6 +84,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 * "git branch -r" => list alle remote branches"
 * "git log --graph" => visuele representatie van git log met branches"
 
+## Setup Project on new PC
+
+* npm install
+* setup .env file
+
 ## Sometime
 * Toast messages do not look good.
 * `href="#id"` redirects to an element with ID that might be situated under the navigation bar and page title. Adjust the margin or something of the container that holds the content.
